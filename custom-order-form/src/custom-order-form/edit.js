@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {useBlockProps} from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,13 +29,27 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit(props) {
+	console.log("props", props)
+	function handleHeadingChange(e) {
+		props.setAttributes({headingText: e.target.value});
+	}
+
+	console.log("props.attributes.headingText", props.attributes.headingText)
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Custom Order Form – hello from the editor!',
-				'custom-order-form'
-			) }
-		</p>
+		<div {...useBlockProps()}>
+			{/*<input onChange={handleHeadingChange} type={"text"} value={props.attributes.headingText}/>*/}
+
+			{/*<p>Show option</p>*/}
+			{/*<select>*/}
+			{/*	<option value={"yes"}>Yes</option>*/}
+			{/*	<option value={"no"}>No</option>*/}
+			{/*</select>*/}
+
+			<input placeholder="Meno" disabled />
+			<input placeholder="Email" disabled />
+			<textarea placeholder="Správa" disabled />
+			<button disabled>Odoslať</button>
+		</div>
 	);
 }

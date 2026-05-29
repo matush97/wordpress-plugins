@@ -6,6 +6,9 @@
 	"title": "Custom Order Form",
 	"category": "widgets",
 	"icon": "smiley",
+	"attributes": {
+		"headingText": {"type": "string", "default":  "Objednávkový formulár"}
+	},
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
