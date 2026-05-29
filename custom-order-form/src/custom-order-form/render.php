@@ -3,13 +3,13 @@
 ?>
 
 <style>
-	.container {
+	.custom-form {
 		max-width: 1400px;
 		margin: auto;
 	}
 </style>
 
-<div class="container">
+<div class="custom-form">
 
 	<!-- VAŠE ÚDAJE -->
 	<div class="card">
@@ -18,19 +18,19 @@
 		<div class="form-grid">
 
 			<label>Meno / Firma *</label>
-			<input type="text" name="firma">
+			<input type="text" name="company">
 
 			<label>Adresa</label>
-			<input type="text" name="adresa">
+			<input type="text" name="address">
 
 			<label>Mesto *</label>
-			<input type="text" name="mesto">
+			<input type="text" name="city">
 
 			<label>IČO / IČ DPH</label>
 			<input type="text" name="ico">
 
 			<label>Telefón *</label>
-			<input type="text" name="telefon">
+			<input type="text" name="phone">
 
 			<label>Email *</label>
 			<input type="email" name="email">
@@ -85,130 +85,130 @@
 	</div>
 
 	<!-- TABUĽKA -->
-	<div class="card">
+		<div class="card">
 
-		<h2>Maximálny rozmer</h2>
+			<h2>Maximálny rozmer</h2>
 
-		<div class="max-info">
-			Maximálny rozmer: 2800 x 2070 mm
+			<div class="max-info">
+				Maximálny rozmer: 2800 x 2070 mm
+			</div>
+
+			<div class="top-actions">
+				<button type="button" class="btn btn-add" onclick="addRow()">
+					+ Pridať riadok
+				</button>
+			</div>
+
+			<div class="table-wrapper">
+
+				<table id="cutTable">
+
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>Dĺžka *</th> <!--length-->
+						<th>Šírka *</th> <!--width-->
+						<th>Ks *</th>    <!--numberOfPieces-->
+						<th>Názov</th>   <!--title-->
+						<th>Poznámka</th>
+						<th>Hrúbka</th>
+						<th>Orientácia</th>
+						<th>Dolná</th>
+						<th>Pravá</th>
+						<th>Horná</th>
+						<th>Ľavá</th>
+						<th>Blok</th>
+						<th>Akcia</th>
+					</tr>
+					</thead>
+
+					<tbody id="tableBody">
+
+					<tr>
+						<td class="row-number">1</td>
+
+						<td>
+							<input type="number" name="length">
+						</td>
+
+						<td>
+							<input type="number" name="width">
+						</td>
+
+						<td>
+							<input type="number" name="numberOfPieces">
+						</td>
+
+						<td>
+							<input type="text" name="title">
+						</td>
+
+						<td>
+							<input type="text" name="poznamka[]">
+						</td>
+
+						<td>
+							<select name="hrubka[]">
+								<option>18mm</option>
+								<option>16mm</option>
+							</select>
+						</td>
+
+						<td>
+							<select name="orientacia[]">
+								<option>neotáčať</option>
+								<option>otáčať</option>
+							</select>
+						</td>
+
+						<td>
+							<select name="dolna[]">
+								<option>---</option>
+								<option>ABS 0.5</option>
+							</select>
+						</td>
+
+						<td>
+							<select name="prava[]">
+								<option>---</option>
+								<option>ABS 0.5</option>
+							</select>
+						</td>
+
+						<td>
+							<select name="horna[]">
+								<option>---</option>
+								<option>ABS 0.5</option>
+							</select>
+						</td>
+
+						<td>
+							<select name="lava[]">
+								<option>---</option>
+								<option>ABS 0.5</option>
+							</select>
+						</td>
+
+						<td>
+							<input type="checkbox" name="blok[]">
+						</td>
+
+						<td>
+							<button type="button"
+									class="btn btn-remove"
+									onclick="removeRow(this)">
+								X
+							</button>
+						</td>
+					</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
 		</div>
-
-		<div class="top-actions">
-			<button type="button" class="btn btn-add" onclick="addRow()">
-				+ Pridať riadok
-			</button>
-		</div>
-
-		<div class="table-wrapper">
-
-			<table id="cutTable">
-
-				<thead>
-				<tr>
-					<th>#</th>
-					<th>Dĺžka *</th>
-					<th>Šírka *</th>
-					<th>Ks *</th>
-					<th>Názov</th>
-					<th>Poznámka</th>
-					<th>Hrúbka</th>
-					<th>Orientácia</th>
-					<th>Dolná</th>
-					<th>Pravá</th>
-					<th>Horná</th>
-					<th>Ľavá</th>
-					<th>Blok</th>
-					<th>Akcia</th>
-				</tr>
-				</thead>
-
-				<tbody id="tableBody">
-
-				<tr>
-					<td class="row-number">1</td>
-
-					<td>
-						<input type="number" name="dlzka[]">
-					</td>
-
-					<td>
-						<input type="number" name="sirka[]">
-					</td>
-
-					<td>
-						<input type="number" name="ks[]">
-					</td>
-
-					<td>
-						<input type="text" name="nazov[]">
-					</td>
-
-					<td>
-						<input type="text" name="poznamka[]">
-					</td>
-
-					<td>
-						<select name="hrubka[]">
-							<option>18mm</option>
-							<option>16mm</option>
-						</select>
-					</td>
-
-					<td>
-						<select name="orientacia[]">
-							<option>neotáčať</option>
-							<option>otáčať</option>
-						</select>
-					</td>
-
-					<td>
-						<select name="dolna[]">
-							<option>---</option>
-							<option>ABS 0.5</option>
-						</select>
-					</td>
-
-					<td>
-						<select name="prava[]">
-							<option>---</option>
-							<option>ABS 0.5</option>
-						</select>
-					</td>
-
-					<td>
-						<select name="horna[]">
-							<option>---</option>
-							<option>ABS 0.5</option>
-						</select>
-					</td>
-
-					<td>
-						<select name="lava[]">
-							<option>---</option>
-							<option>ABS 0.5</option>
-						</select>
-					</td>
-
-					<td>
-						<input type="checkbox" name="blok[]">
-					</td>
-
-					<td>
-						<button type="button"
-								class="btn btn-remove"
-								onclick="removeRow(this)">
-							X
-						</button>
-					</td>
-				</tr>
-
-				</tbody>
-
-			</table>
-
-		</div>
-
-	</div>
 
 	<div class="card">
 		<button type="submit" class="btn btn-add" onclick="sendInformation()">
@@ -335,8 +335,58 @@
 
 	}
 
-	function sendInformation() {
-		alert("Odoslane")
+	// async function sendInformation() {
+	//
+	// 	let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
+	// 		method: 'POST'
+	// 	});
+	//
+	// 	let text = await response.text();
+	//
+	// 	console.log(text);
+	//
+	// }
+
+	async function sendInformation() {
+
+		const rows = [];
+		document.querySelectorAll('#tableBody tr').forEach(row => {
+
+			rows.push({
+				length: row.querySelector('[name="length"]').value,
+				width: row.querySelector('[name="width"]').value,
+				numberOfPieces: row.querySelector('[name="numberOfPieces"]').value,
+				title: row.querySelector('[name="title"]').value,
+			});
+
+		});
+
+		let data = {
+			company: document.querySelector('[name="company"]').value,
+			address: document.querySelector('[name="address"]').value,
+			city: document.querySelector('[name="city"]').value,
+			ico: document.querySelector('[name="ico"]').value,
+			phone: document.querySelector('[name="phone"]').value,
+			email: document.querySelector('[name="email"]').value,
+			rows
+		};
+		console.log("data", data);
+
+		let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
+
+			method: 'POST',
+
+			headers: {
+				'Content-Type': 'application/json'
+			},
+
+			body: JSON.stringify(data)
+
+		});
+
+		let result = await response.json();
+
+		console.log("result", result);
 	}
 
 </script>
