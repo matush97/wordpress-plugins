@@ -29,22 +29,9 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit(props) {
-	console.log("props", props)
-	function handleHeadingChange(e) {
-		props.setAttributes({headingText: e.target.value});
-	}
-
-	console.log("props.attributes.headingText", props.attributes.headingText)
+export default function Edit() {
 	return (
 		<div {...useBlockProps()}>
-			{/*<input onChange={handleHeadingChange} type={"text"} value={props.attributes.headingText}/>*/}
-
-			{/*<p>Show option</p>*/}
-			{/*<select>*/}
-			{/*	<option value={"yes"}>Yes</option>*/}
-			{/*	<option value={"no"}>No</option>*/}
-			{/*</select>*/}
 
 			<input placeholder="Meno" disabled />
 			<input placeholder="Email" disabled />
