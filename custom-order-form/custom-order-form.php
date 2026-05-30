@@ -40,12 +40,46 @@ function save_order_form() {
         ]);
     }
 
-    // test save
-    file_put_contents(
-        plugin_dir_path(__FILE__) . 'orders.txt',
-        json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL,
-        FILE_APPEND
-    );
+    // ===== CSV GENERATION =====
+
+    $upload_dir = wp_upload_dir();
+    $file_path = $upload_dir['path'] . '/order_' . time() . '.csv';
+
+    $file = fopen($file_path, 'w');
+
+    // 1. CUSTOMER INFO
+    fputcsv($file, ['Firma', 'Adresa', 'Mesto', 'ICO', 'Telefon', 'Email']);
+
+    fputcsv($file, [
+        $data['company'],
+        $data['address'],
+        $data['city'],
+        $data['ico'],
+        $data['phone'],
+        $data['email']
+    ]);
+
+    // empty line
+    fputcsv($file, []);
+
+    // section label
+    fputcsv($file, ['--- POLOZKY ---']);
+
+    // items header
+    fputcsv($file, ['Length', 'Width', 'Kusy', 'Názov']);
+
+    foreach ($data['rows'] as $row) {
+        fputcsv($file, [
+            $row['length'],
+            $row['width'],
+            $row['numberOfPieces'],
+            $row['title']
+        ]);
+    }
+
+    fclose($file);
+
+    // ===== RESPONSE =====
 
     wp_send_json_success([
         'message' => 'Objednávka uložená'

@@ -49,12 +49,12 @@
 				<option>25mm</option>
 			</select>
 
-			<label>Výrobca</label>
-			<select>
-				<option>- vyber -</option>
-				<option>Egger</option>
-				<option>Kronospan</option>
-			</select>
+<!--			<label>Výrobca</label>-->
+<!--			<select>-->
+<!--				<option>- vyber -</option>-->
+<!--				<option>Egger</option>-->
+<!--				<option>Kronospan</option>-->
+<!--			</select>-->
 
 			<label>Dekor</label>
 			<select>
@@ -334,18 +334,6 @@
 		});
 
 	}
-
-	// async function sendInformation() {
-	//
-	// 	let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
-	// 		method: 'POST'
-	// 	});
-	//
-	// 	let text = await response.text();
-	//
-	// 	console.log(text);
-	//
-	// }
 
 	async function sendInformation() {
 
