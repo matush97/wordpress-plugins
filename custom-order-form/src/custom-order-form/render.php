@@ -36,50 +36,31 @@
 			<input type="email" name="email">
 
 			<label>Materiál *</label>
-			<select>
-				<option>DTD Laminovaná</option>
-				<option>MDF</option>
-				<option>Plywood</option>
-			</select>
+			<select id="material" name="material"></select>
 
 			<label>Hrúbka</label>
-			<select>
-				<option>18mm</option>
-				<option>16mm</option>
-				<option>25mm</option>
-			</select>
-
-<!--			<label>Výrobca</label>-->
-<!--			<select>-->
-<!--				<option>- vyber -</option>-->
-<!--				<option>Egger</option>-->
-<!--				<option>Kronospan</option>-->
-<!--			</select>-->
+			<select id="thickness" name="thickness"></select>
 
 			<label>Dekor</label>
-			<select>
-				<option>- vyber -</option>
-				<option>Biela</option>
-				<option>Dub Sonoma</option>
-			</select>
+			<select id="decor" name="decor"></select>
 
 			<label>Iný dekor</label>
-			<input type="text">
+			<input type="text" name="anotherDecor">
 
 			<label>Doprava</label>
-			<select>
-				<option>nie, osobné vyzdvihnutie</option>
-				<option>kuriér</option>
+			<select name="transport">
+				<option value="osobne vyzdvihnutie">Osobné vyzdvihnutie</option>
+				<option value="kurier">Kuriér</option>
 			</select>
 
 			<label>Typ objednávky</label>
-			<select>
-				<option>Porez</option>
-				<option>ABS hrana</option>
+			<select name="orderType">
+				<option value="porez">Porez</option>
+				<option value="ina cenova ponuka">Iná cenová ponuka</option>
 			</select>
 
 			<label>Vaše označ. obj.</label>
-			<input type="text">
+			<input type="text" name="customerOrderReference">
 
 		</div>
 	</div>
@@ -144,53 +125,61 @@
 						</td>
 
 						<td>
-							<input type="text" name="poznamka[]">
+							<input type="text" name="note">
 						</td>
 
 						<td>
-							<select name="hrubka[]">
-								<option>18mm</option>
-								<option>16mm</option>
+							<select name="hrubka">
+								<option value="dvojita (duplak)">dvojitá (duplák)</option>
+								<option value="dvojita s bielou">dvojitá s bielou</option>
 							</select>
 						</td>
 
 						<td>
-							<select name="orientacia[]">
-								<option>neotáčať</option>
-								<option>otáčať</option>
+							<select name="orientacia">
+								<option value="neotacat" >neotáčať</option>
+								<option value="otacat">otáčať</option>
 							</select>
 						</td>
 
 						<td>
-							<select name="dolna[]">
-								<option>---</option>
-								<option>ABS 0.5</option>
+							<select name="dolna">
+								<option>Bez ABS</option>
+								<option>0.5</option>
+								<option>1</option>
+								<option>2</option>
 							</select>
 						</td>
 
 						<td>
-							<select name="prava[]">
-								<option>---</option>
-								<option>ABS 0.5</option>
+							<select name="prava">
+								<option>Bez ABS</option>
+								<option>0.5</option>
+								<option>1</option>
+								<option>2</option>
 							</select>
 						</td>
 
 						<td>
-							<select name="horna[]">
-								<option>---</option>
-								<option>ABS 0.5</option>
+							<select name="horna">
+								<option>Bez ABS</option>
+								<option>0.5</option>
+								<option>1</option>
+								<option>2</option>
 							</select>
 						</td>
 
 						<td>
-							<select name="lava[]">
-								<option>---</option>
-								<option>ABS 0.5</option>
+							<select name="lava">
+								<option>Bez ABS</option>
+								<option>0.5</option>
+								<option>1</option>
+								<option>2</option>
 							</select>
 						</td>
 
 						<td>
-							<input type="checkbox" name="blok[]">
+							<input type="number" name="blok">
 						</td>
 
 						<td>
@@ -220,97 +209,222 @@
 </div>
 
 <script>
+	const materialsData = {
+		materials: [
+			{
+				name: "DTD Laminovaná",
+				thicknesses: [
+					{
+						value: "18mm",
+						decors: ["Biela", "Dub Sonoma", "Dub Hamilton"]
+					},
+					{
+						value: "25mm",
+						decors: ["Biela", "Čierna"]
+					}
+				]
+			},
+			{
+				name: "MDF",
+				thicknesses: [
+					{
+						value: "16mm",
+						decors: ["Biela MDF", "Sivá MDF"]
+					}
+				]
+			},
+			{
+				name: "Plywood",
+				thicknesses: [
+					{
+						value: "18mm",
+						decors: ["Natural"]
+					}
+				]
+			}
+		]
+	};
+	console.log(materialsData);
+
+	document.addEventListener('DOMContentLoaded', () => {
+
+		const materialSelect = document.getElementById('material');
+		const thicknessSelect = document.getElementById('thickness');
+		const decorSelect = document.getElementById('decor');
+
+		materialsData.materials.forEach(material => {
+
+			materialSelect.innerHTML += `
+            <option value="${material.name}">
+                ${material.name}
+            </option>
+        `;
+
+		});
+
+		loadThicknesses();
+		loadDecors();
+
+		materialSelect.addEventListener('change', () => {
+
+			loadThicknesses();
+			loadDecors();
+
+		});
+
+		thicknessSelect.addEventListener('change', () => {
+
+			loadDecors();
+
+		});
+
+		function loadThicknesses() {
+
+			const selectedMaterial = materialSelect.value;
+
+			const material = materialsData.materials.find(
+				m => m.name === selectedMaterial
+			);
+
+			thicknessSelect.innerHTML = '';
+
+			material.thicknesses.forEach(thickness => {
+
+				thicknessSelect.innerHTML += `
+                <option value="${thickness.value}">
+                    ${thickness.value}
+                </option>
+            `;
+
+			});
+
+		}
+
+		function loadDecors() {
+
+			const selectedMaterial = materialSelect.value;
+			const selectedThickness = thicknessSelect.value;
+
+			const material = materialsData.materials.find(
+				m => m.name === selectedMaterial
+			);
+
+			const thickness = material.thicknesses.find(
+				t => t.value === selectedThickness
+			);
+
+			decorSelect.innerHTML = '';
+
+			thickness.decors.forEach(decor => {
+
+				decorSelect.innerHTML += `
+                <option value="${decor}">
+                    ${decor}
+                </option>
+            `;
+
+			});
+
+		}
+
+	});
 
 	function addRow() {
 
 		let tableBody = document.getElementById('tableBody');
-
 		let rowCount = tableBody.rows.length + 1;
 
 		let row = `
-            <tr>
+        <tr>
 
-                <td class="row-number">${rowCount}</td>
+            <td class="row-number">${rowCount}</td>
 
-                <td>
-                    <input type="number" name="dlzka[]">
-                </td>
+            <td>
+                <input type="number" name="length">
+            </td>
 
-                <td>
-                    <input type="number" name="sirka[]">
-                </td>
+            <td>
+                <input type="number" name="width">
+            </td>
 
-                <td>
-                    <input type="number" name="ks[]">
-                </td>
+            <td>
+                <input type="number" name="numberOfPieces">
+            </td>
 
-                <td>
-                    <input type="text" name="nazov[]">
-                </td>
+            <td>
+                <input type="text" name="title">
+            </td>
 
-                <td>
-                    <input type="text" name="poznamka[]">
-                </td>
+            <td>
+                <input type="text" name="note">
+            </td>
 
-                <td>
-                    <select name="hrubka[]">
-                        <option>18mm</option>
-                        <option>16mm</option>
-                    </select>
-                </td>
+            <td>
+                <select name="hrubka">
+                    <option value="dvojita (duplak)">dvojitá (duplák)</option>
+                    <option value="dvojita s bielou">dvojitá s bielou</option>
+                </select>
+            </td>
 
-                <td>
-                    <select name="orientacia[]">
-                        <option>neotáčať</option>
-                        <option>otáčať</option>
-                    </select>
-                </td>
+            <td>
+                <select name="orientacia">
+                    <option value="neotacat">neotáčať</option>
+                    <option value="otacat">otáčať</option>
+                </select>
+            </td>
 
-                <td>
-                    <select name="dolna[]">
-                        <option>---</option>
-                        <option>ABS 0.5</option>
-                    </select>
-                </td>
+            <td>
+                <select name="dolna">
+                    <option>Bez ABS</option>
+                    <option>0.5</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
 
-                <td>
-                    <select name="prava[]">
-                        <option>---</option>
-                        <option>ABS 0.5</option>
-                    </select>
-                </td>
+            <td>
+                <select name="prava">
+                    <option>Bez ABS</option>
+                    <option>0.5</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
 
-                <td>
-                    <select name="horna[]">
-                        <option>---</option>
-                        <option>ABS 0.5</option>
-                    </select>
-                </td>
+            <td>
+                <select name="horna">
+                    <option>Bez ABS</option>
+                    <option>0.5</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
 
-                <td>
-                    <select name="lava[]">
-                        <option>---</option>
-                        <option>ABS 0.5</option>
-                    </select>
-                </td>
+            <td>
+                <select name="lava">
+                    <option>Bez ABS</option>
+                    <option>0.5</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
 
-                <td>
-                    <input type="checkbox" name="blok[]">
-                </td>
+            <td>
+                <input type="number" name="blok">
+            </td>
 
-                <td>
-                    <button type="button"
-                            class="btn btn-remove"
-                            onclick="removeRow(this)">
-                        X
-                    </button>
-                </td>
+            <td>
+                <button type="button"
+                        class="btn btn-remove"
+                        onclick="removeRow(this)">
+                    X
+                </button>
+            </td>
 
-            </tr>
-        `;
+        </tr>
+    `;
 
 		tableBody.insertAdjacentHTML('beforeend', row);
-
 	}
 
 	function removeRow(button) {
@@ -345,6 +459,14 @@
 				width: row.querySelector('[name="width"]').value,
 				numberOfPieces: row.querySelector('[name="numberOfPieces"]').value,
 				title: row.querySelector('[name="title"]').value,
+				note: row.querySelector('[name="note"]').value,
+				hrubka: row.querySelector('[name="hrubka"]').value,
+				orientacia: row.querySelector('[name="orientacia"]').value,
+				dolna: row.querySelector('[name="dolna"]').value,
+				prava: row.querySelector('[name="prava"]').value,
+				horna: row.querySelector('[name="horna"]').value,
+				lava: row.querySelector('[name="lava"]').value,
+				blok: row.querySelector('[name="blok"]').value,
 			});
 
 		});
@@ -356,6 +478,15 @@
 			ico: document.querySelector('[name="ico"]').value,
 			phone: document.querySelector('[name="phone"]').value,
 			email: document.querySelector('[name="email"]').value,
+
+			material: document.querySelector('[name="material"]').value,
+			thickness: document.querySelector('[name="thickness"]').value,
+			decor: document.querySelector('[name="decor"]').value,
+			anotherDecor: document.querySelector('[name="anotherDecor"]').value,
+			transport: document.querySelector('[name="transport"]').value,
+			orderType: document.querySelector('[name="orderType"]').value,
+			customerOrderReference: document.querySelector('[name="customerOrderReference"]').value,
+
 			rows
 		};
 		console.log("data", data);
