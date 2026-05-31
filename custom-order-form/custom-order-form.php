@@ -96,6 +96,20 @@ function save_order_form() {
 
     fclose($file);
 
+    // EMAIL
+    $to = 'matus.hudak@plus4u.net';
+    $subject = "Nová objednávka {$data['ico']}";
+    $message = "Objednávka je v prílohe. Spolocnost {$data['company']}";
+    $attachments = [$file_path];
+
+    $sent = wp_mail($to, $subject, $message, [], $attachments);
+
+    if (!$sent) {
+        wp_send_json_error([
+            'message' => 'Email sa nepodarilo odoslať'
+        ]);
+    }
+
     // ===== RESPONSE =====
 
     wp_send_json_success([
