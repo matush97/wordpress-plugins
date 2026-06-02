@@ -119,3 +119,11 @@ function save_order_form() {
 
 add_action('wp_ajax_save_order_form', 'save_order_form');
 add_action('wp_ajax_nopriv_save_order_form', 'save_order_form');
+
+//function custom_order_form_shortcode() {
+//    ob_start();
+//    include plugin_dir_path(__FILE__) . 'render.php';
+//    return ob_get_clean();
+//}
+//
+//add_shortcode('order_form', 'custom_order_form_shortcode');

@@ -36,13 +36,33 @@
 			<input type="email" name="email">
 
 			<label>Materiál *</label>
-			<select id="material" name="material"></select>
+			<select name="material">
+				<option value="DTD Laminovana">DTD Laminovaná</option>
+				<option value="DTD Dyhovana">DTD Dýhovaná</option>
+				<option value="DTD Surova">DTD Surová</option>
+				<option value="HDF (Sololit)">HDF (Sololit)</option>
+				<option value="MDF Dýhovaná">MDF Dýhovaná</option>
+				<option value="MDF obojst. biela">MDF obojst. biela</option>
+				<option value="MDF Surova">MDF Surová</option>
+				<option value="Pracovna doska 600">Pracovná doska 600</option>
+				<option value="Pracovna doska 600 - 16mm">Pracovná doska 600 - 16mm</option>
+				<option value="Pracovna doska 920">Pracovná doska 920</option>
+				<option value="Rozne">Rozne</option>
+				<option value="Senosan">Senosan</option>
+				<option value="Zastena">Zástena</option>
+			</select>
 
 			<label>Hrúbka</label>
-			<select id="thickness" name="thickness"></select>
+			<select name="thickness">
+				<option value="10">10 mm</option>
+				<option value="16">16 mm</option>
+				<option value="18">18 mm</option>
+				<option value="25">25 mm</option>
+				<option value="36">36 mm</option>
+			</select>
 
 			<label>Dekor</label>
-			<select id="decor" name="decor"></select>
+			<input type="text" name="decor">
 
 			<label>Iný dekor</label>
 			<input type="text" name="anotherDecor">
@@ -72,6 +92,9 @@
 
 			<div class="max-info">
 				Maximálny rozmer: 2800 x 2070 mm
+			</div>
+			<div class="max-info">
+				Špeciálna objednávka na pracovné dosky a zásteny.
 			</div>
 
 			<div class="top-actions">
@@ -146,6 +169,7 @@
 							<select name="dolna">
 								<option>Bez ABS</option>
 								<option>0.5</option>
+								<option>0.8</option>
 								<option>1</option>
 								<option>2</option>
 							</select>
@@ -155,6 +179,7 @@
 							<select name="prava">
 								<option>Bez ABS</option>
 								<option>0.5</option>
+								<option>0.8</option>
 								<option>1</option>
 								<option>2</option>
 							</select>
@@ -164,6 +189,7 @@
 							<select name="horna">
 								<option>Bez ABS</option>
 								<option>0.5</option>
+								<option>0.8</option>
 								<option>1</option>
 								<option>2</option>
 							</select>
@@ -173,6 +199,7 @@
 							<select name="lava">
 								<option>Bez ABS</option>
 								<option>0.5</option>
+								<option>0.8</option>
 								<option>1</option>
 								<option>2</option>
 							</select>
@@ -209,126 +236,6 @@
 </div>
 
 <script>
-	const materialsData = {
-		materials: [
-			{
-				name: "DTD Laminovaná",
-				thicknesses: [
-					{
-						value: "18mm",
-						decors: ["Biela", "Dub Sonoma", "Dub Hamilton"]
-					},
-					{
-						value: "25mm",
-						decors: ["Biela", "Čierna"]
-					}
-				]
-			},
-			{
-				name: "MDF",
-				thicknesses: [
-					{
-						value: "16mm",
-						decors: ["Biela MDF", "Sivá MDF"]
-					}
-				]
-			},
-			{
-				name: "Plywood",
-				thicknesses: [
-					{
-						value: "18mm",
-						decors: ["Natural"]
-					}
-				]
-			}
-		]
-	};
-	console.log(materialsData);
-
-	document.addEventListener('DOMContentLoaded', () => {
-
-		const materialSelect = document.getElementById('material');
-		const thicknessSelect = document.getElementById('thickness');
-		const decorSelect = document.getElementById('decor');
-
-		materialsData.materials.forEach(material => {
-
-			materialSelect.innerHTML += `
-            <option value="${material.name}">
-                ${material.name}
-            </option>
-        `;
-
-		});
-
-		loadThicknesses();
-		loadDecors();
-
-		materialSelect.addEventListener('change', () => {
-
-			loadThicknesses();
-			loadDecors();
-
-		});
-
-		thicknessSelect.addEventListener('change', () => {
-
-			loadDecors();
-
-		});
-
-		function loadThicknesses() {
-
-			const selectedMaterial = materialSelect.value;
-
-			const material = materialsData.materials.find(
-				m => m.name === selectedMaterial
-			);
-
-			thicknessSelect.innerHTML = '';
-
-			material.thicknesses.forEach(thickness => {
-
-				thicknessSelect.innerHTML += `
-                <option value="${thickness.value}">
-                    ${thickness.value}
-                </option>
-            `;
-
-			});
-
-		}
-
-		function loadDecors() {
-
-			const selectedMaterial = materialSelect.value;
-			const selectedThickness = thicknessSelect.value;
-
-			const material = materialsData.materials.find(
-				m => m.name === selectedMaterial
-			);
-
-			const thickness = material.thicknesses.find(
-				t => t.value === selectedThickness
-			);
-
-			decorSelect.innerHTML = '';
-
-			thickness.decors.forEach(decor => {
-
-				decorSelect.innerHTML += `
-                <option value="${decor}">
-                    ${decor}
-                </option>
-            `;
-
-			});
-
-		}
-
-	});
-
 	function addRow() {
 
 		let tableBody = document.getElementById('tableBody');
@@ -377,6 +284,7 @@
                 <select name="dolna">
                     <option>Bez ABS</option>
                     <option>0.5</option>
+                    <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
@@ -386,6 +294,7 @@
                 <select name="prava">
                     <option>Bez ABS</option>
                     <option>0.5</option>
+                    <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
@@ -395,6 +304,7 @@
                 <select name="horna">
                     <option>Bez ABS</option>
                     <option>0.5</option>
+                    <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
@@ -404,6 +314,7 @@
                 <select name="lava">
                     <option>Bez ABS</option>
                     <option>0.5</option>
+                    <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>

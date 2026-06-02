@@ -30,4 +30,6 @@ registerBlockType( metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
+	title: 'Custom Order Form',
+	category: 'widgets',
 } );
