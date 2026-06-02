@@ -74,8 +74,8 @@ function save_order_form() {
     fputcsv($file, ['--- POLOZKY ---']);
 
     // items header
-    fputcsv($file, ['Length', 'Width', 'Kusy', 'Nazov', 'Poznamka', 'Hrubka', 'Orientacia',
-                    'Dolna', 'Prava', 'Horna', 'Lava', 'Blok']);
+    fputcsv($file, ['Dlzka', 'Sirka', 'Kusy', 'Nazov', 'Poznamka', 'Hrubka', 'Orientacia',
+                    'Zadna', 'Prava', 'Predna', 'Lava', 'Blok']);
 
     foreach ($data['rows'] as $row) {
         fputcsv($file, [

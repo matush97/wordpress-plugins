@@ -136,15 +136,15 @@
 					<td class="row-number">1</td>
 
 					<td>
-						<input type="number" name="length">
+						<input type="text" name="length">
 					</td>
 
 					<td>
-						<input type="number" name="width">
+						<input type="text" name="width">
 					</td>
 
 					<td>
-						<input type="number" name="numberOfPieces">
+						<input type="text" name="numberOfPieces">
 					</td>
 
 					<td>
