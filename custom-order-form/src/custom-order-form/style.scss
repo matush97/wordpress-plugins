@@ -55,10 +55,16 @@ select{
 	overflow-x:auto;
 }
 
+table input,
+table select{
+	width:100%;
+	min-width:unset;
+}
+
 table{
 	width:100%;
 	border-collapse:collapse;
-	min-width:1200px;
+	table-layout:fixed;
 }
 
 table th{
@@ -75,7 +81,8 @@ table td{
 
 table input,
 table select{
-	min-width:100px;
+	width:100%;
+	min-width:unset;
 }
 
 .btn{
