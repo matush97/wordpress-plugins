@@ -171,7 +171,7 @@
 
 					<td>
 						<select name="zadna">
-							<option>Bez ABS</option>
+							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
 							<option>1</option>
@@ -181,7 +181,7 @@
 
 					<td>
 						<select name="prava">
-							<option>Bez ABS</option>
+							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
 							<option>1</option>
@@ -191,7 +191,7 @@
 
 					<td>
 						<select name="predna">
-							<option>Bez ABS</option>
+							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
 							<option>1</option>
@@ -201,7 +201,7 @@
 
 					<td>
 						<select name="lava">
-							<option>Bez ABS</option>
+							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
 							<option>1</option>
@@ -299,7 +299,7 @@
 
             <td>
                 <select name="zadna">
-                    <option>Bez ABS</option>
+                    <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
@@ -309,7 +309,7 @@
 
             <td>
                 <select name="prava">
-                    <option>Bez ABS</option>
+                    <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
@@ -319,7 +319,7 @@
 
             <td>
                 <select name="predna">
-                    <option>Bez ABS</option>
+                    <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
@@ -329,7 +329,7 @@
 
             <td>
                 <select name="lava">
-                    <option>Bez ABS</option>
+                    <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
