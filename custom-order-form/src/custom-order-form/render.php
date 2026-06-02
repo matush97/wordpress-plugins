@@ -86,145 +86,149 @@
 	</div>
 
 	<!-- TABUĽKA -->
-		<div class="card">
+	<div class="card">
 
-			<h2>Maximálny rozmer</h2>
-
-			<div class="max-info">
-				Maximálny rozmer: 2800 x 2070 mm
-			</div>
-			<div class="max-info">
-				Špeciálna objednávka na pracovné dosky a zásteny.
+		<div class="max-dimensions-header">
+			<div class="max-dimensions-text">
+				<h2>Maximálny rozmer</h2>
+				<p>Maximálny rozmer: 2800 x 2070 mm</p>
+				<p>Špeciálna objednávka na pracovné dosky a zásteny.</p>
 			</div>
 
-			<div class="top-actions">
-				<button type="button" class="btn btn-add" onclick="addRow()">
-					+ Pridať riadok
-				</button>
+			<div class="max-dimensions-image">
+				<img src="https://www.altaviafactory.sk/wp-content/uploads/2026/06/max-dimensions.png"
+					 alt="Maximálny rozmer">
 			</div>
+		</div>
 
-			<div class="table-wrapper">
+		<div class="top-actions">
+			<button type="button" class="btn btn-add" onclick="addRow()">
+				+ Pridať riadok
+			</button>
+		</div>
 
-				<table id="cutTable">
+		<div class="table-wrapper">
 
-					<thead>
-					<tr>
-						<th>#</th>
-						<th>Dĺžka *</th> <!--length-->
-						<th>Šírka *</th> <!--width-->
-						<th>Ks *</th>    <!--numberOfPieces-->
-						<th>Názov</th>   <!--title-->
-						<th>Poznámka</th>
-						<th>Hrúbka</th>
-						<th>Orientácia</th>
-						<th>Dolná</th>
-						<th>Pravá</th>
-						<th>Horná</th>
-						<th>Ľavá</th>
-						<th>Blok</th>
-						<th>Akcia</th>
-					</tr>
-					</thead>
+			<table id="cutTable">
 
-					<tbody id="tableBody">
+				<thead>
+				<tr>
+					<th>#</th>
+					<th>Dĺžka *</th> <!--length-->
+					<th>Šírka *</th> <!--width-->
+					<th>Ks *</th>    <!--numberOfPieces-->
+					<th>Názov</th>   <!--title-->
+					<th>Poznámka</th>
+					<th>Hrúbka</th>
+					<th>Orientácia</th>
+					<th>Dolná</th>
+					<th>Pravá</th>
+					<th>Horná</th>
+					<th>Ľavá</th>
+					<th>Blok</th>
+					<th>Akcia</th>
+				</tr>
+				</thead>
 
-					<tr>
-						<td class="row-number">1</td>
+				<tbody id="tableBody">
 
-						<td>
-							<input type="number" name="length">
-						</td>
+				<tr>
+					<td class="row-number">1</td>
 
-						<td>
-							<input type="number" name="width">
-						</td>
+					<td>
+						<input type="number" name="length">
+					</td>
 
-						<td>
-							<input type="number" name="numberOfPieces">
-						</td>
+					<td>
+						<input type="number" name="width">
+					</td>
 
-						<td>
-							<input type="text" name="title">
-						</td>
+					<td>
+						<input type="number" name="numberOfPieces">
+					</td>
 
-						<td>
-							<input type="text" name="note">
-						</td>
+					<td>
+						<input type="text" name="title">
+					</td>
 
-						<td>
-							<select name="hrubka">
-								<option value="dvojita (duplak)">dvojitá (duplák)</option>
-								<option value="dvojita s bielou">dvojitá s bielou</option>
-							</select>
-						</td>
+					<td>
+						<input type="text" name="note">
+					</td>
 
-						<td>
-							<select name="orientacia">
-								<option value="neotacat" >neotáčať</option>
-								<option value="otacat">otáčať</option>
-							</select>
-						</td>
+					<td>
+						<select name="hrubka">
+							<option value="dvojita (duplak)">dvojitá (duplák)</option>
+							<option value="dvojita s bielou">dvojitá s bielou</option>
+						</select>
+					</td>
 
-						<td>
-							<select name="dolna">
-								<option>Bez ABS</option>
-								<option>0.5</option>
-								<option>0.8</option>
-								<option>1</option>
-								<option>2</option>
-							</select>
-						</td>
+					<td>
+						<select name="orientacia">
+							<option value="neotacat">neotáčať</option>
+							<option value="otacat">otáčať</option>
+						</select>
+					</td>
 
-						<td>
-							<select name="prava">
-								<option>Bez ABS</option>
-								<option>0.5</option>
-								<option>0.8</option>
-								<option>1</option>
-								<option>2</option>
-							</select>
-						</td>
+					<td>
+						<select name="dolna">
+							<option>Bez ABS</option>
+							<option>0.5</option>
+							<option>0.8</option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</td>
 
-						<td>
-							<select name="horna">
-								<option>Bez ABS</option>
-								<option>0.5</option>
-								<option>0.8</option>
-								<option>1</option>
-								<option>2</option>
-							</select>
-						</td>
+					<td>
+						<select name="prava">
+							<option>Bez ABS</option>
+							<option>0.5</option>
+							<option>0.8</option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</td>
 
-						<td>
-							<select name="lava">
-								<option>Bez ABS</option>
-								<option>0.5</option>
-								<option>0.8</option>
-								<option>1</option>
-								<option>2</option>
-							</select>
-						</td>
+					<td>
+						<select name="horna">
+							<option>Bez ABS</option>
+							<option>0.5</option>
+							<option>0.8</option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</td>
 
-						<td>
-							<input type="number" name="blok">
-						</td>
+					<td>
+						<select name="lava">
+							<option>Bez ABS</option>
+							<option>0.5</option>
+							<option>0.8</option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</td>
 
-						<td>
-							<button type="button"
-									class="btn btn-remove"
-									onclick="removeRow(this)">
-								X
-							</button>
-						</td>
-					</tr>
+					<td>
+						<input type="number" name="blok">
+					</td>
 
-					</tbody>
+					<td>
+						<button type="button"
+								class="btn btn-remove"
+								onclick="removeRow(this)">
+							X
+						</button>
+					</td>
+				</tr>
 
-				</table>
+				</tbody>
 
-			</div>
+			</table>
 
 		</div>
+
+	</div>
 
 	<div class="card">
 		<button type="submit" class="btn btn-add" onclick="sendInformation()">

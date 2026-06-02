@@ -115,3 +115,36 @@ table select{
 	}
 
 }
+
+.max-dimensions-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 30px;
+	margin-bottom: 20px;
+}
+
+.max-dimensions-text {
+	flex: 1;
+}
+
+.max-dimensions-image {
+	flex: 0 0 300px;
+}
+
+.max-dimensions-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+@media (max-width: 768px) {
+	.max-dimensions-header {
+		flex-direction: column;
+	}
+
+	.max-dimensions-image {
+		width: 100%;
+		max-width: 300px;
+	}
+}
