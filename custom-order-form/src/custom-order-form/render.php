@@ -230,6 +230,19 @@
 
 	</div>
 
+	<div id="confirmModal" class="modal hidden">
+		<div class="modal-content">
+			<h3>Potvrdenie objednávky</h3>
+
+			<div id="modalSummary"></div>
+
+			<div class="modal-actions">
+				<button type="button" onclick="closeModal()">Zrušiť</button>
+				<button type="button" onclick="confirmSend()">Potvrdiť odoslanie</button>
+			</div>
+		</div>
+	</div>
+
 	<div class="card">
 		<button type="submit" class="btn btn-add" onclick="sendInformation()">
 			Odoslať
@@ -364,6 +377,65 @@
 
 	}
 
+	// async function sendInformation() {
+	//
+	// 	const rows = [];
+	// 	document.querySelectorAll('#tableBody tr').forEach(row => {
+	//
+	// 		rows.push({
+	// 			length: row.querySelector('[name="length"]').value,
+	// 			width: row.querySelector('[name="width"]').value,
+	// 			numberOfPieces: row.querySelector('[name="numberOfPieces"]').value,
+	// 			title: row.querySelector('[name="title"]').value,
+	// 			note: row.querySelector('[name="note"]').value,
+	// 			hrubka: row.querySelector('[name="hrubka"]').value,
+	// 			orientacia: row.querySelector('[name="orientacia"]').value,
+	// 			dolna: row.querySelector('[name="dolna"]').value,
+	// 			prava: row.querySelector('[name="prava"]').value,
+	// 			horna: row.querySelector('[name="horna"]').value,
+	// 			lava: row.querySelector('[name="lava"]').value,
+	// 			blok: row.querySelector('[name="blok"]').value,
+	// 		});
+	//
+	// 	});
+	//
+	// 	let data = {
+	// 		company: document.querySelector('[name="company"]').value,
+	// 		address: document.querySelector('[name="address"]').value,
+	// 		city: document.querySelector('[name="city"]').value,
+	// 		ico: document.querySelector('[name="ico"]').value,
+	// 		phone: document.querySelector('[name="phone"]').value,
+	// 		email: document.querySelector('[name="email"]').value,
+	//
+	// 		material: document.querySelector('[name="material"]').value,
+	// 		thickness: document.querySelector('[name="thickness"]').value,
+	// 		decor: document.querySelector('[name="decor"]').value,
+	// 		anotherDecor: document.querySelector('[name="anotherDecor"]').value,
+	// 		transport: document.querySelector('[name="transport"]').value,
+	// 		orderType: document.querySelector('[name="orderType"]').value,
+	// 		customerOrderReference: document.querySelector('[name="customerOrderReference"]').value,
+	//
+	// 		rows
+	// 	};
+	// 	console.log("data", data);
+	//
+	// 	let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
+	//
+	// 		method: 'POST',
+	//
+	// 		headers: {
+	// 			'Content-Type': 'application/json'
+	// 		},
+	//
+	// 		body: JSON.stringify(data)
+	//
+	// 	});
+	//
+	// 	let result = await response.json();
+	//
+	// 	console.log("result", result);
+	// }
+
 	async function sendInformation() {
 
 		const rows = [];
@@ -386,7 +458,7 @@
 
 		});
 
-		let data = {
+		window.formData = {
 			company: document.querySelector('[name="company"]').value,
 			address: document.querySelector('[name="address"]').value,
 			city: document.querySelector('[name="city"]').value,
@@ -404,23 +476,48 @@
 
 			rows
 		};
-		console.log("data", data);
+
+		showModal(window.formData);
+	}
+
+	function showModal(data) {
+
+		let summary = `
+        <p><strong>Firma:</strong> ${data.company}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Telefón:</strong> ${data.phone}</p>
+        <hr>
+        <p><strong>Materiál:</strong> ${data.material}</p>
+        <p><strong>Hrúbka:</strong> ${data.thickness}</p>
+        <p><strong>Dekor:</strong> ${data.decor}</p>
+        <hr>
+        <p><strong>Počet riadkov:</strong> ${data.rows.length}</p>
+    `;
+
+		document.getElementById('modalSummary').innerHTML = summary;
+		document.getElementById('confirmModal').classList.remove('hidden');
+	}
+
+	function closeModal() {
+		document.getElementById('confirmModal').classList.add('hidden');
+	}
+
+	async function confirmSend() {
+
+		closeModal();
 
 		let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
-
 			method: 'POST',
-
 			headers: {
 				'Content-Type': 'application/json'
 			},
-
-			body: JSON.stringify(data)
-
+			body: JSON.stringify(window.formData)
 		});
 
 		let result = await response.json();
 
 		console.log("result", result);
-	}
 
+		alert("Objednávka odoslaná");
+	}
 </script>

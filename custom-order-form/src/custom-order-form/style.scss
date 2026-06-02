@@ -148,3 +148,34 @@ table select{
 		max-width: 300px;
 	}
 }
+
+
+//modal
+.modal {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+.modal.hidden {
+	display: none;
+}
+
+.modal-content {
+	background: white;
+	padding: 20px;
+	width: 600px;
+	max-height: 80vh;
+	overflow-y: auto;
+	border-radius: 10px;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
