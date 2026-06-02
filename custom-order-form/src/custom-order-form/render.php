@@ -92,7 +92,7 @@
 			<div class="max-dimensions-text">
 				<h2>Maximálny rozmer</h2>
 				<p>Maximálny rozmer: 2800 x 2070 mm</p>
-				<p>Špeciálna objednávka na pracovné dosky a zásteny.</p>
+				<p>Pri zadaní pracovnej dosky alebo zásteny vytvorte novú objednávku.</p>
 			</div>
 
 			<div class="max-dimensions-image">
@@ -157,8 +157,8 @@
 
 					<td>
 						<select name="hrubka">
+							<option value=""></option>
 							<option value="dvojita (duplak)">dvojitá (duplák)</option>
-							<option value="dvojita s bielou">dvojitá s bielou</option>
 						</select>
 					</td>
 
@@ -285,8 +285,8 @@
 
             <td>
                 <select name="hrubka">
+                    <option value=""></option>
                     <option value="dvojita (duplak)">dvojitá (duplák)</option>
-                    <option value="dvojita s bielou">dvojitá s bielou</option>
                 </select>
             </td>
 
@@ -422,7 +422,6 @@
 	}
 
 	function showModal(data) {
-
 		let summary = `
         <p><strong>Firma:</strong> ${data.company}</p>
         <p><strong>Email:</strong> ${data.email}</p>
@@ -436,6 +435,7 @@
     `;
 
 		document.getElementById('modalSummary').innerHTML = summary;
+		document.getElementById('confirmModal').classList.add('show');
 		document.getElementById('confirmModal').classList.remove('hidden');
 	}
 
