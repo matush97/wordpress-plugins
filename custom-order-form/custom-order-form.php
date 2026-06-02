@@ -86,9 +86,9 @@ function save_order_form() {
             $row['note'],
             $row['hrubka'],
             $row['orientacia'],
-            $row['dolna'],
+            $row['zadna'],
             $row['prava'],
-            $row['horna'],
+            $row['predna'],
             $row['lava'],
             $row['blok'],
         ]);

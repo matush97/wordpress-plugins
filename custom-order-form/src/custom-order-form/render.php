@@ -121,9 +121,9 @@
 					<th>Poznámka</th>
 					<th>Hrúbka</th>
 					<th>Orientácia</th>
-					<th>Dolná</th>
+					<th>Zadná</th>
 					<th>Pravá</th>
-					<th>Horná</th>
+					<th>Predná</th>
 					<th>Ľavá</th>
 					<th>Blok</th>
 					<th>Akcia</th>
@@ -170,7 +170,7 @@
 					</td>
 
 					<td>
-						<select name="dolna">
+						<select name="zadna">
 							<option>Bez ABS</option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -190,7 +190,7 @@
 					</td>
 
 					<td>
-						<select name="horna">
+						<select name="predna">
 							<option>Bez ABS</option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -298,7 +298,7 @@
             </td>
 
             <td>
-                <select name="dolna">
+                <select name="zadna">
                     <option>Bez ABS</option>
                     <option>0.5</option>
                     <option>0.8</option>
@@ -318,7 +318,7 @@
             </td>
 
             <td>
-                <select name="horna">
+                <select name="predna">
                     <option>Bez ABS</option>
                     <option>0.5</option>
                     <option>0.8</option>
@@ -377,65 +377,6 @@
 
 	}
 
-	// async function sendInformation() {
-	//
-	// 	const rows = [];
-	// 	document.querySelectorAll('#tableBody tr').forEach(row => {
-	//
-	// 		rows.push({
-	// 			length: row.querySelector('[name="length"]').value,
-	// 			width: row.querySelector('[name="width"]').value,
-	// 			numberOfPieces: row.querySelector('[name="numberOfPieces"]').value,
-	// 			title: row.querySelector('[name="title"]').value,
-	// 			note: row.querySelector('[name="note"]').value,
-	// 			hrubka: row.querySelector('[name="hrubka"]').value,
-	// 			orientacia: row.querySelector('[name="orientacia"]').value,
-	// 			dolna: row.querySelector('[name="dolna"]').value,
-	// 			prava: row.querySelector('[name="prava"]').value,
-	// 			horna: row.querySelector('[name="horna"]').value,
-	// 			lava: row.querySelector('[name="lava"]').value,
-	// 			blok: row.querySelector('[name="blok"]').value,
-	// 		});
-	//
-	// 	});
-	//
-	// 	let data = {
-	// 		company: document.querySelector('[name="company"]').value,
-	// 		address: document.querySelector('[name="address"]').value,
-	// 		city: document.querySelector('[name="city"]').value,
-	// 		ico: document.querySelector('[name="ico"]').value,
-	// 		phone: document.querySelector('[name="phone"]').value,
-	// 		email: document.querySelector('[name="email"]').value,
-	//
-	// 		material: document.querySelector('[name="material"]').value,
-	// 		thickness: document.querySelector('[name="thickness"]').value,
-	// 		decor: document.querySelector('[name="decor"]').value,
-	// 		anotherDecor: document.querySelector('[name="anotherDecor"]').value,
-	// 		transport: document.querySelector('[name="transport"]').value,
-	// 		orderType: document.querySelector('[name="orderType"]').value,
-	// 		customerOrderReference: document.querySelector('[name="customerOrderReference"]').value,
-	//
-	// 		rows
-	// 	};
-	// 	console.log("data", data);
-	//
-	// 	let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
-	//
-	// 		method: 'POST',
-	//
-	// 		headers: {
-	// 			'Content-Type': 'application/json'
-	// 		},
-	//
-	// 		body: JSON.stringify(data)
-	//
-	// 	});
-	//
-	// 	let result = await response.json();
-	//
-	// 	console.log("result", result);
-	// }
-
 	async function sendInformation() {
 
 		const rows = [];
@@ -449,9 +390,9 @@
 				note: row.querySelector('[name="note"]').value,
 				hrubka: row.querySelector('[name="hrubka"]').value,
 				orientacia: row.querySelector('[name="orientacia"]').value,
-				dolna: row.querySelector('[name="dolna"]').value,
+				zadna: row.querySelector('[name="zadna"]').value,
 				prava: row.querySelector('[name="prava"]').value,
-				horna: row.querySelector('[name="horna"]').value,
+				predna: row.querySelector('[name="predna"]').value,
 				lava: row.querySelector('[name="lava"]').value,
 				blok: row.querySelector('[name="blok"]').value,
 			});
