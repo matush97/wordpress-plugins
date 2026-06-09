@@ -164,7 +164,7 @@
 					</td>
 
 					<td>
-						<select name="predna">
+						<select name="predna" class="edge-front">
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -174,7 +174,7 @@
 					</td>
 
 					<td>
-						<select name="zadna">
+						<select name="zadna" class="edge-back">
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -184,7 +184,7 @@
 					</td>
 
 					<td>
-						<select name="lava">
+						<select name="lava" class="edge-left">
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -194,7 +194,7 @@
 					</td>
 
 					<td>
-						<select name="prava">
+						<select name="prava" class="edge-right">
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -299,7 +299,7 @@
             </td>
 
 			<td>
-                <select name="predna">
+                <select name="predna" class="edge-front">
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
@@ -309,7 +309,7 @@
             </td>
 
             <td>
-                <select name="zadna">
+                <select name="zadna" class="edge-back">
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
@@ -319,7 +319,7 @@
             </td>
 
 			<td>
-                <select name="lava">
+                <select name="lava" class="edge-left">
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
@@ -329,7 +329,7 @@
             </td>
 
             <td>
-                <select name="prava">
+                <select name="prava" class="edge-right">
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>

@@ -200,3 +200,19 @@ table select{
 	justify-content: space-between;
 	margin-top: 20px;
 }
+
+.edge-front{
+	border-bottom: 4px solid #000 !important;
+}
+
+.edge-back{
+	border-top: 4px solid #000 !important;
+}
+
+.edge-left{
+	border-left: 4px solid #000 !important;
+}
+
+.edge-right{
+	border-right: 4px solid #000 !important;
+}
