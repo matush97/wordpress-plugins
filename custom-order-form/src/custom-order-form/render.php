@@ -115,10 +115,10 @@
 					<th>Poznámka</th>
 					<th>Hrúbka</th>
 					<th>Orientácia</th>
-					<th>Zadná</th>
-					<th>Pravá</th>
 					<th>Predná</th>
+					<th>Zadná</th>
 					<th>Ľavá</th>
+					<th>Pravá</th>
 					<th>Blok</th>
 					<th>Akcia</th>
 				</tr>
