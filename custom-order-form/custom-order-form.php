@@ -46,7 +46,7 @@ function save_order_form()
 	// ===== CSV GENERATION =====
 
 	$upload_dir = wp_upload_dir();
-	$file_path = $upload_dir['path'] . '/order_' . $data['city'] . '.csv';
+	$file_path = $upload_dir['path'] . '/order_' . $data['company'] . '.csv';
 
 	$file = fopen($file_path, 'w');
 
@@ -135,6 +135,7 @@ function save_order_form()
 		$customerEmail,
 		$customerSubject,
 		$customerMessage,
+		[],
 		$attachments
 	);
 
