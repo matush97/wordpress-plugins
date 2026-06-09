@@ -13,7 +13,7 @@
  * @package CreateBlock
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 /**
@@ -24,97 +24,125 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
-function create_block_custom_order_form_block_init() {
-	wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
+function create_block_custom_order_form_block_init()
+{
+	wp_register_block_types_from_metadata_collection(__DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php');
 }
-add_action( 'init', 'create_block_custom_order_form_block_init' );
 
-function save_order_form() {
-    $json = file_get_contents('php://input');
+add_action('init', 'create_block_custom_order_form_block_init');
 
-    $data = json_decode($json, true);
+function save_order_form()
+{
+	$json = file_get_contents('php://input');
 
-    if (!$data) {
-        wp_send_json_error([
-            'message' => 'Invalid JSON'
-        ]);
-    }
+	$data = json_decode($json, true);
 
-    // ===== CSV GENERATION =====
+	if (!$data) {
+		wp_send_json_error([
+			'message' => 'Invalid JSON'
+		]);
+	}
 
-    $upload_dir = wp_upload_dir();
-    $file_path = $upload_dir['path'] . '/order_' . time() . '.csv';
+	// ===== CSV GENERATION =====
 
-    $file = fopen($file_path, 'w');
+	$upload_dir = wp_upload_dir();
+	$file_path = $upload_dir['path'] . '/order_' . $data['city'] . '.csv';
 
-    // 1. CUSTOMER INFO
-    fputcsv($file, ['Firma', 'Adresa', 'Mesto', 'ICO', 'Telefon', 'Email', 'Material', 'Hrubka', 'Dekor', 'Iny dekor',
-                    'Doprava', 'Typ objednavky', 'Oznacenie objednavky']);
+	$file = fopen($file_path, 'w');
 
-    fputcsv($file, [
-        $data['company'],
-        $data['address'],
-        $data['city'],
-        $data['ico'],
-        $data['phone'],
-        $data['email'],
-        $data['material'],
-        $data['thickness'],
-        $data['decor'],
-        $data['anotherDecor'],
-        $data['transport'],
-        $data['orderType'],
-        $data['customerOrderReference'],
-    ]);
+	// 1. CUSTOMER INFO
+	fputcsv($file, ['Firma', 'Adresa', 'Mesto', 'ICO', 'Telefon', 'Email', 'Material', 'Hrubka', 'Dekor', 'Iny dekor',
+		'Doprava', 'Typ objednavky', 'Oznacenie objednavky']);
 
-    // empty line
-    fputcsv($file, []);
+	fputcsv($file, [
+		$data['company'],
+		$data['address'],
+		$data['city'],
+		$data['ico'],
+		$data['phone'],
+		$data['email'],
+		$data['material'],
+		$data['thickness'],
+		$data['decor'],
+		$data['anotherDecor'],
+		$data['transport'],
+		$data['orderType'],
+		$data['customerOrderReference'],
+	]);
 
-    // section label
-    fputcsv($file, ['--- POLOZKY ---']);
+	// empty line
+	fputcsv($file, []);
 
-    // items header
-    fputcsv($file, ['Dlzka', 'Sirka', 'Kusy', 'Nazov', 'Poznamka', 'Hrubka', 'Orientacia',
-					'Predna', 'Zadna', 'Lava', 'Prava', 'Blok']);
+	// section label
+	fputcsv($file, ['--- POLOZKY ---']);
 
-    foreach ($data['rows'] as $row) {
-        fputcsv($file, [
-            $row['length'],
-            $row['width'],
-            $row['numberOfPieces'],
-            $row['title'],
-            $row['note'],
-            $row['hrubka'],
-            $row['orientacia'],
+	// items header
+	fputcsv($file, ['Dlzka', 'Sirka', 'Kusy', 'Nazov', 'Poznamka', 'Hrubka', 'Orientacia',
+		'Predna', 'Zadna', 'Lava', 'Prava', 'Blok']);
+
+	foreach ($data['rows'] as $row) {
+		fputcsv($file, [
+			$row['length'],
+			$row['width'],
+			$row['numberOfPieces'],
+			$row['title'],
+			$row['note'],
+			$row['hrubka'],
+			$row['orientacia'],
 			$row['predna'],
-            $row['zadna'],
+			$row['zadna'],
 			$row['lava'],
-            $row['prava'],
-            $row['blok'],
-        ]);
-    }
+			$row['prava'],
+			$row['blok'],
+		]);
+	}
 
-    fclose($file);
+	fclose($file);
 
-    // EMAIL
-    $to = 'porez@altaviafactory.sk';
-    $subject = "Nová objednávka {$data['company']}";
-    $message = "Objednávka je v prílohe. Spolocnost {$data['company']}, ICO {$data['ico']}";
-    $attachments = [$file_path];
+	// EMAIL
+	$to = 'porez@altaviafactory.sk';
+	$subject = "Nová objednávka {$data['company']}";
+	$message = "Objednávka je v prílohe. Spolocnost {$data['company']}, ICO {$data['ico']}";
+	$attachments = [$file_path];
 
-    $sent = wp_mail($to, $subject, $message, [], $attachments);
+	$sent = wp_mail($to, $subject, $message, [], $attachments);
 
-    if (!$sent) {
-        wp_send_json_error([
-            'message' => 'Email sa nepodarilo odoslať'
-        ]);
-    }
+	if (!$sent) {
+		wp_send_json_error([
+			'message' => 'Email sa nepodarilo odoslať'
+		]);
+	}
 
-    // ===== RESPONSE =====
+	// POTVRDENIE KLIENTOVI
 
-    wp_send_json_success([
-        'message' => 'Objednávka uložená'
-    ]);
+	$customerEmail = sanitize_email($data['email']);
+
+	$customerSubject = 'Potvrdenie prijatia objednávky';
+
+	$customerMessage = "
+		Dobrý deň,
+		ďakujeme za Vašu objednávku.
+		Vaša požiadavka bola úspešne prijatá a bude spracovaná naším tímom.
+		Referenčné číslo objednávky: {$data['customerOrderReference']}
+
+		V prípade otázok nás kontaktujte.
+
+		S pozdravom
+		Altavia Factory
+	";
+
+	wp_mail(
+		$customerEmail,
+		$customerSubject,
+		$customerMessage,
+		$attachments
+	);
+
+	// ===== RESPONSE =====
+
+	wp_send_json_success([
+		'message' => 'Objednávka uložená'
+	]);
 }
 
 add_action('wp_ajax_save_order_form', 'save_order_form');
