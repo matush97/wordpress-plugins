@@ -164,7 +164,27 @@
 					</td>
 
 					<td>
+						<select name="predna">
+							<option value=""></option>
+							<option>0.5</option>
+							<option>0.8</option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</td>
+
+					<td>
 						<select name="zadna">
+							<option value=""></option>
+							<option>0.5</option>
+							<option>0.8</option>
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</td>
+
+					<td>
+						<select name="lava">
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -183,25 +203,6 @@
 						</select>
 					</td>
 
-					<td>
-						<select name="predna">
-							<option value=""></option>
-							<option>0.5</option>
-							<option>0.8</option>
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</td>
-
-					<td>
-						<select name="lava">
-							<option value=""></option>
-							<option>0.5</option>
-							<option>0.8</option>
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</td>
 
 					<td>
 						<input type="number" name="blok">
@@ -297,27 +298,7 @@
                 </select>
             </td>
 
-            <td>
-                <select name="zadna">
-                    <option value=""></option>
-                    <option>0.5</option>
-                    <option>0.8</option>
-                    <option>1</option>
-                    <option>2</option>
-                </select>
-            </td>
-
-            <td>
-                <select name="prava">
-                    <option value=""></option>
-                    <option>0.5</option>
-                    <option>0.8</option>
-                    <option>1</option>
-                    <option>2</option>
-                </select>
-            </td>
-
-            <td>
+			<td>
                 <select name="predna">
                     <option value=""></option>
                     <option>0.5</option>
@@ -328,7 +309,27 @@
             </td>
 
             <td>
+                <select name="zadna">
+                    <option value=""></option>
+                    <option>0.5</option>
+                    <option>0.8</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
+
+			<td>
                 <select name="lava">
+                    <option value=""></option>
+                    <option>0.5</option>
+                    <option>0.8</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
+
+            <td>
+                <select name="prava">
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
@@ -390,10 +391,10 @@
 				note: row.querySelector('[name="note"]').value,
 				hrubka: row.querySelector('[name="hrubka"]').value,
 				orientacia: row.querySelector('[name="orientacia"]').value,
-				zadna: row.querySelector('[name="zadna"]').value,
-				prava: row.querySelector('[name="prava"]').value,
 				predna: row.querySelector('[name="predna"]').value,
+				zadna: row.querySelector('[name="zadna"]').value,
 				lava: row.querySelector('[name="lava"]').value,
+				prava: row.querySelector('[name="prava"]').value,
 				blok: row.querySelector('[name="blok"]').value,
 			});
 

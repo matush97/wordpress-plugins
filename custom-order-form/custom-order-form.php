@@ -75,7 +75,7 @@ function save_order_form() {
 
     // items header
     fputcsv($file, ['Dlzka', 'Sirka', 'Kusy', 'Nazov', 'Poznamka', 'Hrubka', 'Orientacia',
-                    'Zadna', 'Prava', 'Predna', 'Lava', 'Blok']);
+					'Predna', 'Zadna', 'Lava', 'Prava', 'Blok']);
 
     foreach ($data['rows'] as $row) {
         fputcsv($file, [
@@ -86,10 +86,10 @@ function save_order_form() {
             $row['note'],
             $row['hrubka'],
             $row['orientacia'],
+			$row['predna'],
             $row['zadna'],
+			$row['lava'],
             $row['prava'],
-            $row['predna'],
-            $row['lava'],
             $row['blok'],
         ]);
     }
