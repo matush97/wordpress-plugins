@@ -101,12 +101,6 @@
 			</div>
 		</div>
 
-		<div class="top-actions">
-			<button type="button" class="btn btn-add" onclick="addRow()">
-				+ Pridať riadok
-			</button>
-		</div>
-
 		<div class="table-wrapper">
 
 			<table id="cutTable">
@@ -228,6 +222,12 @@
 
 		</div>
 
+		<div class="top-actions">
+			<button type="button" class="btn btn-add" onclick="addRow()">
+				+ Pridať riadok
+			</button>
+		</div>
+
 	</div>
 
 	<div id="confirmModal" class="modal hidden">
@@ -264,15 +264,15 @@
             <td class="row-number">${rowCount}</td>
 
             <td>
-                <input type="number" name="length">
+                <input type="text" name="length">
             </td>
 
             <td>
-                <input type="number" name="width">
+                <input type="text" name="width">
             </td>
 
             <td>
-                <input type="number" name="numberOfPieces">
+                <input type="text" name="numberOfPieces">
             </td>
 
             <td>
