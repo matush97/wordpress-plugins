@@ -229,6 +229,11 @@
 			</button>
 		</div>
 
+
+		<button type="submit" class="btn btn-add" onclick="sendInformation()">
+			Odoslať
+		</button>
+
 	</div>
 
 	<div id="confirmModal" class="modal hidden">
@@ -245,11 +250,43 @@
 	</div>
 
 	<div class="card">
-		<button type="submit" class="btn btn-add" onclick="sendInformation()">
+		<h2>Vyplnenie vlastnej šablóny</h2>
+		<label>Ak chcete vyplniť šablónu bez použitia formulára, stiahnite si, prosím, našu šablónu a po jej vyplnení ju nahrajte nižšie.</label>
+
+		<div style="padding-top: 10px">
+			<a href="https://www.altaviafactory.sk/wp-content/uploads/2026/06/sablona-1.csv"
+			   class="btn btn-download"
+			   download>
+				Stiahnuť Excel šablónu
+			</a>
+		</div>
+
+		<div style="padding-top: 20px">
+			<label>Priložiť vyplnený Excel</label>
+
+			<input type="file"
+				   name="customer_excel"
+				   accept=".xlsx,.xls,.csv"
+			/>
+		</div>
+
+		<button type="submit" class="btn btn-add" onclick="sendInformationFromTemplateModal()">
 			Odoslať
 		</button>
 	</div>
 
+	<div id="confirmModalTemplate" class="modal hidden">
+		<div class="modal-content">
+			<h3>Potvrdenie objednávky</h3>
+
+			<div id="modalSummaryTemplate"></div>
+
+			<div class="modal-actions">
+				<button type="button" onclick="closeModalTemplate()">Zrušiť</button>
+				<button type="button" onclick="confirmSendTemplate()">Potvrdiť odoslanie</button>
+			</div>
+		</div>
+	</div>
 
 </div>
 
@@ -461,5 +498,43 @@
 		console.log("result", result);
 
 		alert("Objednávka odoslaná");
+	}
+
+	function sendInformationFromTemplateModal() {
+		let summary = "Chceli by ste odoslať šablónu?";
+
+		document.getElementById('modalSummaryTemplate').innerHTML = summary;
+		document.getElementById('confirmModalTemplate').classList.add('show');
+		document.getElementById('confirmModalTemplate').classList.remove('hidden');
+	}
+
+	function closeModalTemplate() {
+		document.getElementById('confirmModalTemplate').classList.add('hidden');
+	}
+
+	async function confirmSendTemplate() {
+
+		closeModalTemplate();
+
+		const fileInput = document.querySelector('[name="customer_excel"]');
+
+		const formData = new FormData();
+
+		formData.append(
+			'customer_excel',
+			fileInput.files[0]
+		);
+
+		let response = await fetch(
+			'/wp-admin/admin-ajax.php?action=save_order_form_template',
+			{
+				method: 'POST',
+				body: formData
+			}
+		);
+
+		let result = await response.json();
+
+		console.log(result);
 	}
 </script>

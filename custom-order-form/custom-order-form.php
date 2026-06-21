@@ -146,5 +146,46 @@ function save_order_form()
 	]);
 }
 
+function save_order_form_template() {
+
+	$attachments = [];
+
+	// upload súboru
+	if (!empty($_FILES['customer_excel']['name'])) {
+
+		require_once(ABSPATH . 'wp-admin/includes/file.php');
+
+		$movefile = wp_handle_upload(
+			$_FILES['customer_excel'],
+			['test_form' => false]
+		);
+
+		if (!isset($movefile['error'])) {
+			$attachments[] = $movefile['file'];
+		}
+	}
+
+	// ADMIN EMAIL
+	$to = 'porez@altaviafactory.sk';
+	$subject = 'Nová objednávka zo šablóny';
+	$message = 'Prišla nová objednávka vytvorená zo šablóny Excel.';
+
+	$sent = wp_mail($to, $subject, $message, [], $attachments);
+
+	if (!$sent) {
+		wp_send_json_error([
+			'message' => 'Email sa nepodarilo odoslať'
+		]);
+	}
+
+	// RESPONSE
+	wp_send_json_success([
+		'message' => 'Šablóna odoslaná'
+	]);
+}
+
 add_action('wp_ajax_save_order_form', 'save_order_form');
 add_action('wp_ajax_nopriv_save_order_form', 'save_order_form');
+
+add_action('wp_ajax_save_order_form_template', 'save_order_form_template');
+add_action('wp_ajax_nopriv_save_order_form_template', 'save_order_form_template');

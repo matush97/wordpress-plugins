@@ -106,11 +106,27 @@ table select{
 .btn-add{
 	background:#28a745;
 	color:#fff;
+	margin-top: 10px;
 }
 
 .btn-remove{
 	background:#dc3545;
 	color:#fff;
+}
+
+.btn-download {
+	background: #28a745;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	font-weight: 600;
+	padding: 10px 20px;
+	border-radius: 6px;
+	transition: 0.2s;
+}
+
+.btn-download:hover {
+	opacity: 0.9;
 }
 
 .top-actions{
