@@ -537,4 +537,35 @@
 
 		console.log(result);
 	}
+
+	document.addEventListener('keydown', function (e) {
+
+		if (e.key !== 'Enter') {
+			return;
+		}
+
+		// nechceme odosielať formulár
+		e.preventDefault();
+
+		const focusableElements = Array.from(
+			document.querySelectorAll(
+				'input, select, textarea, button, a[href], [tabindex]:not([tabindex="-1"])'
+			)
+		).filter(el =>
+			!el.disabled &&
+			el.offsetParent !== null
+		);
+
+		const currentIndex = focusableElements.indexOf(document.activeElement);
+
+		if (currentIndex === -1) {
+			return;
+		}
+
+		const nextElement = focusableElements[currentIndex + 1];
+
+		if (nextElement) {
+			nextElement.focus();
+		}
+	});
 </script>
