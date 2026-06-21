@@ -254,7 +254,7 @@
 		<label>Ak chcete vyplniť šablónu bez použitia formulára, stiahnite si, prosím, našu šablónu a po jej vyplnení ju nahrajte nižšie.</label>
 
 		<div style="padding-top: 10px">
-			<a href="https://www.altaviafactory.sk/wp-content/uploads/2026/06/sablona-1.csv"
+			<a href="https://www.altaviafactory.sk/wp-content/uploads/2026/06/TABULKA-POREZ.xlsx"
 			   class="btn btn-download"
 			   download>
 				Stiahnuť Excel šablónu
