@@ -235,7 +235,7 @@
 		</button>
 
 	</div>
-
+`
 	<div id="confirmModal" class="modal hidden">
 		<div class="modal-content">
 			<h3>Potvrdenie objednávky</h3>
@@ -243,8 +243,8 @@
 			<div id="modalSummary"></div>
 
 			<div class="modal-actions">
-				<button type="button" onclick="closeModal()">Zrušiť</button>
-				<button type="button" onclick="confirmSend()">Potvrdiť odoslanie</button>
+				<button class="btn btn-add" type="button" onclick="closeModal()">Zrušiť</button>
+				<button class="btn btn-add" type="button" onclick="confirmSend()">Potvrdiť odoslanie</button>
 			</div>
 		</div>
 	</div>
@@ -282,8 +282,8 @@
 			<div id="modalSummaryTemplate"></div>
 
 			<div class="modal-actions">
-				<button type="button" onclick="closeModalTemplate()">Zrušiť</button>
-				<button type="button" onclick="confirmSendTemplate()">Potvrdiť odoslanie</button>
+				<button class="btn btn-add" type="button" onclick="closeModalTemplate()">Zrušiť</button>
+				<button class="btn btn-add" type="button" onclick="confirmSendTemplate()">Potvrdiť odoslanie</button>
 			</div>
 		</div>
 	</div>
