@@ -473,6 +473,7 @@
 			transport: document.querySelector('[name="transport"]').value,
 			orderType: document.querySelector('[name="orderType"]').value,
 			customerOrderReference: document.querySelector('[name="customerOrderReference"]').value,
+			additionalInformation: document.querySelector('[name="additionalInformation"]').value,
 
 			rows
 		};
