@@ -102,7 +102,9 @@ function save_order_form()
 	// EMAIL
 	$to = 'porez@altaviafactory.sk';
 	$subject = "Nová objednávka {$data['company']}";
-	$message = "Objednávka je v prílohe. Spolocnost {$data['company']}, ICO {$data['ico']}";
+	$message = "Objednávka je v prílohe. Spolocnost {$data['company']}, ICO {$data['ico']}.
+				Doplnujuce informacie od zakaznika:
+				{$data['additionalInformation']}";
 	$attachments = [$file_path];
 
 	$sent = wp_mail($to, $subject, $message, [], $attachments);

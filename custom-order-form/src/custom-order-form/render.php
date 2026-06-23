@@ -59,6 +59,7 @@
 				<option value="18">18 mm</option>
 				<option value="25">25 mm</option>
 				<option value="36">36 mm</option>
+				<option value="38">38 mm</option>
 			</select>
 
 			<label>Dekor</label>
@@ -229,6 +230,12 @@
 			</button>
 		</div>
 
+		<div style="padding-top: 10px">
+			<label>Doplňujúce informácie</label>
+			<input
+				name="additionalInformation"
+				placeholder="Sem môžete doplniť dodatočné informácie k objednávke..." />
+		</div>
 
 		<button type="submit" class="btn btn-add" onclick="sendInformation()">
 			Odoslať
