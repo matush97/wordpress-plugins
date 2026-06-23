@@ -117,6 +117,7 @@
 					<th>Hrúbka</th>
 					<th>Orientácia</th>
 					<th>Predná</th>
+					<th class="arrow-column" ></th> <!-- sipka -->
 					<th>Zadná</th>
 					<th>Ľavá</th>
 					<th>Pravá</th>
@@ -172,6 +173,12 @@
 							<option>1</option>
 							<option>2</option>
 						</select>
+					</td>
+
+					<td class="arrow-column">
+						<button type="button" class="copy-edge-btn">
+							➜
+						</button>
 					</td>
 
 					<td>
@@ -234,7 +241,7 @@
 			<label>Doplňujúce informácie</label>
 			<input
 				name="additionalInformation"
-				placeholder="Sem môžete doplniť dodatočné informácie k objednávke..." />
+				placeholder="Sem môžete doplniť dodatočné informácie k objednávke..."/>
 		</div>
 
 		<button type="submit" class="btn btn-add" onclick="sendInformation()">
@@ -242,7 +249,7 @@
 		</button>
 
 	</div>
-`
+	`
 	<div id="confirmModal" class="modal hidden">
 		<div class="modal-content">
 			<h3>Potvrdenie objednávky</h3>
@@ -258,7 +265,8 @@
 
 	<div class="card">
 		<h2>Vyplnenie vlastnej šablóny</h2>
-		<label>Ak chcete vyplniť šablónu bez použitia formulára, stiahnite si, prosím, našu šablónu a po jej vyplnení ju nahrajte nižšie.</label>
+		<label>Ak chcete vyplniť šablónu bez použitia formulára, stiahnite si, prosím, našu šablónu a po jej vyplnení ju
+			nahrajte nižšie.</label>
 
 		<div style="padding-top: 10px">
 			<a href="https://www.altaviafactory.sk/wp-content/uploads/2026/06/TABULKA-POREZ.xlsx"
@@ -343,14 +351,20 @@
             </td>
 
 			<td>
-                <select name="predna" class="edge-front">
-                    <option value=""></option>
-                    <option>0.5</option>
-                    <option>0.8</option>
-                    <option>1</option>
-                    <option>2</option>
-                </select>
-            </td>
+				<select name="predna" class="edge-front">
+					<option value=""></option>
+					<option>0.5</option>
+					<option>0.8</option>
+					<option>1</option>
+					<option>2</option>
+				</select>
+			</td>
+
+			<td class="arrow-column">
+				<button type="button" class="copy-edge-btn">
+					➜
+				</button>
+			</td>
 
             <td>
                 <select name="zadna" class="edge-back">
@@ -574,5 +588,21 @@
 		if (nextElement) {
 			nextElement.focus();
 		}
+	});
+
+	document.addEventListener('click', function (e) {
+
+		if (!e.target.classList.contains('copy-edge-btn')) {
+			return;
+		}
+
+		const row = e.target.closest('tr');
+
+		const value =
+			row.querySelector('.edge-front').value;
+
+		row.querySelector('.edge-back').value = value;
+		row.querySelector('.edge-left').value = value;
+		row.querySelector('.edge-right').value = value;
 	});
 </script>

@@ -232,3 +232,31 @@ table select{
 .edge-right{
 	border-right: 4px solid #000 !important;
 }
+
+.edge-copy-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.copy-edge-btn {
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: 50%;
+	background: #0d6efd;
+	color: white;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+}
+
+.copy-edge-btn:hover {
+	opacity: 0.9;
+}
+
+.arrow-column {
+	width: 40px;
+	min-width: 40px;
+	text-align: center;
+}
