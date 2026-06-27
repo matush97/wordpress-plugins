@@ -112,16 +112,16 @@
 					<th>Dĺžka *</th> <!--length-->
 					<th>Šírka *</th> <!--width-->
 					<th>Ks *</th>    <!--numberOfPieces-->
-					<th>Názov</th>   <!--title-->
+					<th class="name-column">Názov</th>   <!--title-->
 					<th>Hrúbka</th>
 					<th>Orientácia</th>
 					<th>Predná</th>
-					<th class="arrow-column" ></th> <!-- sipka -->
+					<th class="arrow-column"></th> <!-- sipka -->
 					<th>Zadná</th>
 					<th>Ľavá</th>
 					<th>Pravá</th>
 					<th>Blok</th>
-					<th class="note-column" >Poznámka</th>
+					<th class="note-column">Poznámka</th>
 					<th>Akcia</th>
 				</tr>
 				</thead>
@@ -143,7 +143,7 @@
 						<input type="text" name="numberOfPieces">
 					</td>
 
-					<td>
+					<td class="name-column">
 						<input type="text" name="title">
 					</td>
 
@@ -212,7 +212,7 @@
 						<input type="number" name="blok">
 					</td>
 
-					<td class="note-column" >
+					<td class="note-column">
 						<input type="text" name="note">
 					</td>
 
@@ -328,7 +328,7 @@
                 <input type="text" name="numberOfPieces">
             </td>
 
-            <td>
+            <td class="name-column">
                 <input type="text" name="title">
             </td>
 
