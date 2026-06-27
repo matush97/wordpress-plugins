@@ -108,12 +108,11 @@
 
 				<thead>
 				<tr>
-					<th>#</th>
+					<th class="row-number">#</th>
 					<th>Dĺžka *</th> <!--length-->
 					<th>Šírka *</th> <!--width-->
 					<th>Ks *</th>    <!--numberOfPieces-->
 					<th>Názov</th>   <!--title-->
-					<th>Poznámka</th>
 					<th>Hrúbka</th>
 					<th>Orientácia</th>
 					<th>Predná</th>
@@ -122,6 +121,7 @@
 					<th>Ľavá</th>
 					<th>Pravá</th>
 					<th>Blok</th>
+					<th class="note-column" >Poznámka</th>
 					<th>Akcia</th>
 				</tr>
 				</thead>
@@ -145,10 +145,6 @@
 
 					<td>
 						<input type="text" name="title">
-					</td>
-
-					<td>
-						<input type="text" name="note">
 					</td>
 
 					<td>
@@ -214,6 +210,10 @@
 
 					<td>
 						<input type="number" name="blok">
+					</td>
+
+					<td class="note-column" >
+						<input type="text" name="note">
 					</td>
 
 					<td>
@@ -333,10 +333,6 @@
             </td>
 
             <td>
-                <input type="text" name="note">
-            </td>
-
-            <td>
                 <select name="hrubka">
                     <option value=""></option>
                     <option value="dvojita (duplak)">dvojitá (duplák)</option>
@@ -398,6 +394,10 @@
 
             <td>
                 <input type="number" name="blok">
+            </td>
+
+			<td class="note-column" >
+                <input type="text" name="note">
             </td>
 
             <td>
