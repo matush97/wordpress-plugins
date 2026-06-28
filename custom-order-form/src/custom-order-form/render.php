@@ -446,25 +446,37 @@
 
 	async function sendInformation() {
 
+		const domRows = document.querySelectorAll(
+			'#tableBody .section1-data, #tableBody .section2-data'
+		);
+
 		const rows = [];
-		document.querySelectorAll('#tableBody tr').forEach(row => {
+
+		const val = (row, name) =>
+			row.querySelector(`[name="${name}"]`)?.value ?? '';
+
+		for (let i = 0; i < domRows.length; i += 2) {
+
+			const main = domRows[i];
+			const extra = domRows[i + 1];
 
 			rows.push({
-				length: row.querySelector('[name="length"]').value,
-				width: row.querySelector('[name="width"]').value,
-				numberOfPieces: row.querySelector('[name="numberOfPieces"]').value,
-				title: row.querySelector('[name="title"]').value,
-				note: row.querySelector('[name="note"]').value,
-				hrubka: row.querySelector('[name="hrubka"]').value,
-				orientacia: row.querySelector('[name="orientacia"]').value,
-				predna: row.querySelector('[name="predna"]').value,
-				zadna: row.querySelector('[name="zadna"]').value,
-				lava: row.querySelector('[name="lava"]').value,
-				prava: row.querySelector('[name="prava"]').value,
-				blok: row.querySelector('[name="blok"]').value,
-			});
+				length: val(main, 'length'),
+				width: val(main, 'width'),
+				numberOfPieces: val(main, 'numberOfPieces'),
+				title: val(main, 'title'),
 
-		});
+				hrubka: val(main, 'hrubka'),
+				orientacia: val(main, 'orientacia'),
+
+				note: val(extra, 'note'),
+				predna: val(extra, 'predna'),
+				zadna: val(extra, 'zadna'),
+				lava: val(extra, 'lava'),
+				prava: val(extra, 'prava'),
+				blok: val(extra, 'blok'),
+			});
+		}
 
 		window.formData = {
 			company: document.querySelector('[name="company"]').value,
@@ -490,6 +502,8 @@
 	}
 
 	function showModal(data) {
+		console.log("data", data);
+
 		let summary = `
         <p><strong>Firma:</strong> ${data.company}</p>
         <p><strong>Email:</strong> ${data.email}</p>
@@ -499,7 +513,7 @@
         <p><strong>Hrúbka:</strong> ${data.thickness}</p>
         <p><strong>Dekor:</strong> ${data.decor}</p>
         <hr>
-        <p><strong>Počet riadkov:</strong> ${data.rows.length}</p>
+        <p><strong>Počet rozmerov:</strong> ${data.rows.length / 2}</p>
     `;
 
 		document.getElementById('modalSummary').innerHTML = summary;
