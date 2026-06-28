@@ -105,47 +105,31 @@
 		<div class="table-wrapper">
 
 			<table id="cutTable">
+				<tr class="section1-header">
+					<td rowspan="4" class="row-number">1</td>
 
-				<thead>
-				<tr>
-					<th class="row-number">#</th>
-					<th>Dĺžka *</th> <!--length-->
-					<th>Šírka *</th> <!--width-->
-					<th>Ks *</th>    <!--numberOfPieces-->
-					<th class="name-column">Názov</th>   <!--title-->
+					<th>Dĺžka *</th>
+					<th>Šírka *</th>
+					<th>Ks *</th>
+					<th>Názov</th>
 					<th>Hrúbka</th>
 					<th>Orientácia</th>
-					<th>Predná</th>
-					<th class="arrow-column"></th> <!-- sipka -->
-					<th>Zadná</th>
-					<th>Ľavá</th>
-					<th>Pravá</th>
-					<th>Blok</th>
-					<th class="note-column">Poznámka</th>
-					<th>Akcia</th>
+					<th></th>
+
+					<td rowspan="4">
+						<button type="button"
+								class="btn btn-remove"
+								onclick="removeRow(this)">
+							X
+						</button>
+					</td>
 				</tr>
-				</thead>
 
-				<tbody id="tableBody">
-
-				<tr>
-					<td class="row-number">1</td>
-
-					<td>
-						<input type="text" name="length">
-					</td>
-
-					<td>
-						<input type="text" name="width">
-					</td>
-
-					<td>
-						<input type="text" name="numberOfPieces">
-					</td>
-
-					<td class="name-column">
-						<input type="text" name="title">
-					</td>
+				<tr class="section1-data">
+					<td><input type="text" name="length"></td>
+					<td><input type="text" name="width"></td>
+					<td><input type="text" name="numberOfPieces"></td>
+					<td><input type="text" name="title"></td>
 
 					<td>
 						<select name="hrubka">
@@ -160,7 +144,19 @@
 							<option value="otacat">otáčať</option>
 						</select>
 					</td>
+				</tr>
 
+				<tr class="section2-header">
+					<th>Predná</th>
+					<th class="arrow-column">→</th>
+					<th>Zadná</th>
+					<th>Ľavá</th>
+					<th>Pravá</th>
+					<th>Blok</th>
+					<th>Poznámka</th>
+				</tr>
+
+				<tr class="section2-data">
 					<td>
 						<select name="predna" class="edge-front">
 							<option value=""></option>
@@ -171,7 +167,7 @@
 						</select>
 					</td>
 
-					<td class="arrow-column">
+					<td>
 						<button type="button" class="copy-edge-btn">
 							➜
 						</button>
@@ -207,25 +203,14 @@
 						</select>
 					</td>
 
-
 					<td>
 						<input type="number" name="blok">
 					</td>
 
-					<td class="note-column">
+					<td>
 						<input type="text" name="note">
 					</td>
-
-					<td>
-						<button type="button"
-								class="btn btn-remove"
-								onclick="removeRow(this)">
-							X
-						</button>
-					</td>
 				</tr>
-
-				</tbody>
 
 			</table>
 

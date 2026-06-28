@@ -95,6 +95,19 @@ table select {
 	min-width: unset;
 }
 
+//#cutTable input,
+//#cutTable select {
+//	padding: 4px 6px;
+//}
+//#cutTable {
+//	font-size: 13px;
+//}
+//
+//#cutTable input,
+//#cutTable select {
+//	font-size: 13px;
+//}
+
 .btn {
 	padding: 10px 16px;
 	border: none;
@@ -270,4 +283,56 @@ table select {
 
 .name-column {
 	width: 100px;
+}
+
+.row-top td {
+	border-bottom: none;
+}
+
+.row-bottom td {
+	border-top: none;
+}
+
+#cutTable + #cutTable {
+	margin-top: -1px;
+}
+
+#cutTable + #cutTable thead th {
+	background: #555;
+	font-size: 13px;
+}
+
+#cutTable + #cutTable tbody td {
+	border-top: none;
+}
+
+#cutTable thead tr:first-child th {
+	background: #444;
+}
+
+#cutTable thead tr:nth-child(2) th {
+	background: #555;
+	font-size: 13px;
+}
+
+.section1-header th,
+.section2-header th {
+	background: #444;
+	color: #fff;
+	padding: 10px;
+}
+
+.section2-header th {
+	background: #555;
+}
+
+.row-number {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 24px;
+}
+
+.section1-data td,
+.section2-data td {
+	padding: 10px;
 }
