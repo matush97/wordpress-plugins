@@ -109,12 +109,13 @@
 				<tr class="section1-header">
 					<td rowspan="4" class="row-number">1</td>
 
+					<th class="name-column">Názov</th>
 					<th>Dĺžka *</th>
+					<th></th>
 					<th>Šírka *</th>
 					<th>Ks *</th>
-					<th>Názov</th>
 					<th>Hrúbka</th>
-					<th>Orientácia</th>
+					<th class="orientation-column">Orientácia</th>
 					<th></th>
 
 					<td rowspan="4">
@@ -127,10 +128,11 @@
 				</tr>
 
 				<tr class="section1-data">
+					<td><input class="name-column" type="text" name="title"></td>
 					<td><input type="text" name="length"></td>
+					<td></td>
 					<td><input type="text" name="width"></td>
 					<td><input type="text" name="numberOfPieces"></td>
-					<td><input type="text" name="title"></td>
 
 					<td>
 						<select name="hrubka">
@@ -148,16 +150,20 @@
 				</tr>
 
 				<tr class="section2-header">
+					<th class="note-column">Poznámka</th>
 					<th>Predná</th>
 					<th class="arrow-column">→</th>
 					<th>Zadná</th>
 					<th>Ľavá</th>
 					<th>Pravá</th>
 					<th>Blok</th>
-					<th>Poznámka</th>
 				</tr>
 
 				<tr class="section2-data">
+					<td class="note-column">
+						<input type="text" name="note">
+					</td>
+
 					<td>
 						<select name="predna" class="edge-front">
 							<option value=""></option>
@@ -206,10 +212,6 @@
 
 					<td>
 						<input type="number" name="blok">
-					</td>
-
-					<td>
-						<input type="text" name="note">
 					</td>
 				</tr>
 				</tbody>
@@ -304,10 +306,11 @@
         <tr class="section1-header">
             <td rowspan="4" class="row-number">${rowCount}</td>
 
+			<th class="name-column">Názov</th>
             <th>Dĺžka *</th>
+            <th></th>
             <th>Šírka *</th>
             <th>Ks *</th>
-            <th>Názov</th>
             <th>Hrúbka</th>
             <th>Orientácia</th>
             <th></th>
@@ -322,10 +325,11 @@
         </tr>
 
         <tr class="section1-data">
+			<td><input class="name-column" type="text" name="title"></td>
             <td><input type="text" name="length"></td>
+            <td></td>
             <td><input type="text" name="width"></td>
             <td><input type="text" name="numberOfPieces"></td>
-            <td><input type="text" name="title"></td>
 
             <td>
                 <select name="hrubka">
@@ -345,16 +349,20 @@
         </tr>
 
         <tr class="section2-header">
+			<th class="note-column">Poznámka</th>
             <th>Predná</th>
             <th class="arrow-column">→</th>
             <th>Zadná</th>
             <th>Ľavá</th>
             <th>Pravá</th>
             <th>Blok</th>
-            <th>Poznámka</th>
         </tr>
 
         <tr class="section2-data">
+			<td class="note-column">
+                <input type="text" name="note">
+            </td>
+
             <td>
                 <select name="predna" class="edge-front">
                     <option value=""></option>
@@ -403,9 +411,6 @@
                 <input type="number" name="blok">
             </td>
 
-            <td>
-                <input type="text" name="note">
-            </td>
         </tr>
     `;
 
