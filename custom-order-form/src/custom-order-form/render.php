@@ -105,6 +105,7 @@
 		<div class="table-wrapper">
 
 			<table id="cutTable">
+				<tbody id="tableBody">
 				<tr class="section1-header">
 					<td rowspan="4" class="row-number">1</td>
 
@@ -211,6 +212,7 @@
 						<input type="text" name="note">
 					</td>
 				</tr>
+				</tbody>
 
 			</table>
 
@@ -293,29 +295,37 @@
 <script>
 	function addRow() {
 
-		let tableBody = document.getElementById('tableBody');
-		let rowCount = tableBody.rows.length + 1;
+		const tableBody = document.getElementById('tableBody');
 
-		let row = `
-        <tr>
+		const rowCount =
+			document.querySelectorAll('#tableBody .section1-header').length + 1;
 
-            <td class="row-number">${rowCount}</td>
+		const row = `
+        <tr class="section1-header">
+            <td rowspan="4" class="row-number">${rowCount}</td>
 
-            <td>
-                <input type="text" name="length">
+            <th>Dĺžka *</th>
+            <th>Šírka *</th>
+            <th>Ks *</th>
+            <th>Názov</th>
+            <th>Hrúbka</th>
+            <th>Orientácia</th>
+            <th></th>
+
+            <td rowspan="4">
+                <button type="button"
+                        class="btn btn-remove"
+                        onclick="removeRow(this)">
+                    X
+                </button>
             </td>
+        </tr>
 
-            <td>
-                <input type="text" name="width">
-            </td>
-
-            <td>
-                <input type="text" name="numberOfPieces">
-            </td>
-
-            <td class="name-column">
-                <input type="text" name="title">
-            </td>
+        <tr class="section1-data">
+            <td><input type="text" name="length"></td>
+            <td><input type="text" name="width"></td>
+            <td><input type="text" name="numberOfPieces"></td>
+            <td><input type="text" name="title"></td>
 
             <td>
                 <select name="hrubka">
@@ -331,21 +341,33 @@
                 </select>
             </td>
 
-			<td>
-				<select name="predna" class="edge-front">
-					<option value=""></option>
-					<option>0.5</option>
-					<option>0.8</option>
-					<option>1</option>
-					<option>2</option>
-				</select>
-			</td>
+            <td></td>
+        </tr>
 
-			<td class="arrow-column">
-				<button type="button" class="copy-edge-btn">
-					➜
-				</button>
-			</td>
+        <tr class="section2-header">
+            <th>Predná</th>
+            <th class="arrow-column">→</th>
+            <th>Zadná</th>
+            <th>Ľavá</th>
+            <th>Pravá</th>
+            <th>Blok</th>
+            <th>Poznámka</th>
+        </tr>
+
+        <tr class="section2-data">
+            <td>
+                <select name="predna" class="edge-front">
+                    <option value=""></option>
+                    <option>0.5</option>
+                    <option>0.8</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </td>
+
+            <td>
+                <button type="button" class="copy-edge-btn">➜</button>
+            </td>
 
             <td>
                 <select name="zadna" class="edge-back">
@@ -357,7 +379,7 @@
                 </select>
             </td>
 
-			<td>
+            <td>
                 <select name="lava" class="edge-left">
                     <option value=""></option>
                     <option>0.5</option>
@@ -381,18 +403,9 @@
                 <input type="number" name="blok">
             </td>
 
-			<td class="note-column" >
+            <td>
                 <input type="text" name="note">
             </td>
-
-            <td>
-                <button type="button"
-                        class="btn btn-remove"
-                        onclick="removeRow(this)">
-                    X
-                </button>
-            </td>
-
         </tr>
     `;
 
@@ -401,24 +414,29 @@
 
 	function removeRow(button) {
 
-		let row = button.closest('tr');
+		const headerRow = button.closest('.section1-header');
 
-		row.remove();
+		const row1 = headerRow;
+		const row2 = row1.nextElementSibling;
+		const row3 = row2.nextElementSibling;
+		const row4 = row3.nextElementSibling;
+
+		row1.remove();
+		row2.remove();
+		row3.remove();
+		row4.remove();
 
 		updateRowNumbers();
-
 	}
 
 	function updateRowNumbers() {
 
-		let rows = document.querySelectorAll('#tableBody tr');
+		const numbers =
+			document.querySelectorAll('#tableBody .row-number');
 
-		rows.forEach((row, index) => {
-
-			row.querySelector('.row-number').innerText = index + 1;
-
+		numbers.forEach((cell, index) => {
+			cell.textContent = index + 1;
 		});
-
 	}
 
 	async function sendInformation() {
