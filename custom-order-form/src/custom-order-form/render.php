@@ -150,7 +150,7 @@
 				</tr>
 
 				<tr class="section2-header">
-					<th class="note-column">Poznámka</th>
+					<th>Poznámka</th>
 					<th>Predná</th>
 					<th class="arrow-column">→</th>
 					<th>Zadná</th>
@@ -160,7 +160,7 @@
 				</tr>
 
 				<tr class="section2-data">
-					<td class="note-column">
+					<td>
 						<input type="text" name="note">
 					</td>
 
@@ -222,7 +222,7 @@
 
 		<div class="top-actions">
 			<button type="button" class="btn btn-add" onclick="addRow()">
-				+ Pridať riadok
+				+ Pridať ďalší rozmer
 			</button>
 		</div>
 
@@ -349,7 +349,7 @@
         </tr>
 
         <tr class="section2-header">
-			<th class="note-column">Poznámka</th>
+			<th>Poznámka</th>
             <th>Predná</th>
             <th class="arrow-column">→</th>
             <th>Zadná</th>
@@ -359,7 +359,7 @@
         </tr>
 
         <tr class="section2-data">
-			<td class="note-column">
+			<td>
                 <input type="text" name="note">
             </td>
 
