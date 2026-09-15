@@ -13,6 +13,7 @@
 
 	<!-- VAŠE ÚDAJE -->
 	<div class="card">
+		<!-- VAŠE ÚDAJE -->
 		<h2>Vaše údaje</h2>
 
 		<div class="form-grid">
@@ -35,39 +36,6 @@
 			<label>Email *</label>
 			<input type="email" name="email">
 
-			<label>Materiál *</label>
-			<select name="material">
-				<option value="DTD Laminovana">DTD Laminovaná</option>
-				<option value="DTD Dyhovana">DTD Dýhovaná</option>
-				<option value="DTD Surova">DTD Surová</option>
-				<option value="HDF (Sololit)">HDF (Sololit)</option>
-				<option value="MDF Dýhovaná">MDF Dýhovaná</option>
-				<option value="MDF obojst. biela">MDF obojst. biela</option>
-				<option value="MDF Surova">MDF Surová</option>
-				<option value="Pracovna doska 600">Pracovná doska 600</option>
-				<option value="Pracovna doska 600 - 16mm">Pracovná doska 600 - 16mm</option>
-				<option value="Pracovna doska 920">Pracovná doska 920</option>
-				<option value="Rozne">Rozne</option>
-				<option value="Senosan">Senosan</option>
-				<option value="Zastena">Zástena</option>
-			</select>
-
-			<label>Hrúbka</label>
-			<select name="thickness">
-				<option value="10">10 mm</option>
-				<option value="16">16 mm</option>
-				<option value="18">18 mm</option>
-				<option value="25">25 mm</option>
-				<option value="36">36 mm</option>
-				<option value="38">38 mm</option>
-			</select>
-
-			<label>Dekor</label>
-			<input type="text" name="decor">
-
-			<label>Iný dekor</label>
-			<input type="text" name="anotherDecor">
-
 			<label>Doprava</label>
 			<select name="transport">
 				<option value="osobne vyzdvihnutie">Osobné vyzdvihnutie</option>
@@ -84,11 +52,80 @@
 			<input type="text" name="customerOrderReference">
 
 		</div>
-	</div>
 
-	<!-- TABUĽKA -->
-	<div class="card">
+		<!-- ŠPECIFIKÁCIA MATERIÁLU -->
+		<h2 style="padding-top: 50px">Špecifikácia materiálu</h2>
 
+		<div class="table-wrapper">
+			<table id="materialTableBody">
+				<thead>
+				<tr>
+					<th class="row-number">#</th>
+					<th>Materiál</th>
+					<th>Hrúbka</th>
+					<th>Dekor</th>
+					<th class="action-material">Akcia</th>
+				</tr>
+				</thead>
+
+				<tbody id="tableBodyMaterial">
+				<tr>
+					<td class="row-number-material">1</td>
+
+					<td>
+						<select name="material">
+							<option value="DTD Laminovana">DTD Laminovaná</option>
+							<option value="DTD Dyhovana">DTD Dýhovaná</option>
+							<option value="DTD Surova">DTD Surová</option>
+							<option value="HDF (Sololit)">HDF (Sololit)</option>
+							<option value="MDF Dýhovaná">MDF Dýhovaná</option>
+							<option value="MDF obojst. biela">MDF obojst. biela</option>
+							<option value="MDF Surova">MDF Surová</option>
+							<option value="Pracovna doska 600">Pracovná doska 600</option>
+							<option value="Pracovna doska 600 - 16mm">Pracovná doska 600 - 16mm</option>
+							<option value="Pracovna doska 920">Pracovná doska 920</option>
+							<option value="Rozne">Rozne</option>
+							<option value="Senosan">Senosan</option>
+							<option value="Zastena">Zástena</option>
+						</select>
+					</td>
+
+					<td>
+						<select name="thickness">
+							<option value="10">10 mm</option>
+							<option value="16">16 mm</option>
+							<option value="18">18 mm</option>
+							<option value="25">25 mm</option>
+							<option value="36">36 mm</option>
+							<option value="38">38 mm</option>
+						</select>
+					</td>
+
+					<td>
+						<input
+							type="text"
+							name="decor"
+							placeholder="Zadajte dekor"
+						>
+					</td>
+
+					<td>
+						<button type="button"
+								class="btn btn-remove"
+								onclick="removeRowMaterial(this)">
+							X
+						</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<button type="button" class="btn btn-add" onclick="addRowMaterial()">
+			+ Pridať ďalší materiál
+		</button>
+
+		<!-- TABUĽKA -->
 		<div class="max-dimensions-header">
 			<div class="max-dimensions-text">
 				<h2>Maximálny rozmer</h2>
@@ -103,7 +140,6 @@
 		</div>
 
 		<div class="table-wrapper">
-
 			<table id="cutTable">
 				<tbody id="tableBody">
 				<tr class="section1-header">
@@ -217,7 +253,6 @@
 				</tbody>
 
 			</table>
-
 		</div>
 
 		<div class="top-actions">
@@ -226,7 +261,7 @@
 			</button>
 		</div>
 
-		<div style="padding-top: 10px">
+		<div style="padding-top: 50px">
 			<label>Doplňujúce informácie</label>
 			<input
 				name="additionalInformation"
@@ -236,9 +271,8 @@
 		<button type="submit" class="btn btn-add" onclick="sendInformation()">
 			Odoslať
 		</button>
-
 	</div>
-	`
+
 	<div id="confirmModal" class="modal hidden">
 		<div class="modal-content">
 			<h3>Potvrdenie objednávky</h3>
@@ -252,6 +286,7 @@
 		</div>
 	</div>
 
+	<!--	Vyplnenie vlastnej šablóny-->
 	<div class="card">
 		<h2>Vyplnenie vlastnej šablóny</h2>
 		<label>Ak chcete vyplniť šablónu bez použitia formulára, stiahnite si, prosím, našu šablónu a po jej vyplnení ju
@@ -295,6 +330,82 @@
 </div>
 
 <script>
+	function addRowMaterial() {
+		let tableBody = document.getElementById('tableBodyMaterial');
+		let rowCount = tableBody.rows.length + 1;
+
+		let row = `
+		<tr>
+			<td class="row-number-material">${rowCount}</td>
+
+			<td>
+				<select name="material">
+					<option value="DTD Laminovana">DTD Laminovaná</option>
+					<option value="DTD Dyhovana">DTD Dýhovaná</option>
+					<option value="DTD Surova">DTD Surová</option>
+					<option value="HDF (Sololit)">HDF (Sololit)</option>
+					<option value="MDF Dýhovaná">MDF Dýhovaná</option>
+					<option value="MDF obojst. biela">MDF obojst. biela</option>
+					<option value="MDF Surova">MDF Surová</option>
+					<option value="Pracovna doska 600">Pracovná doska 600</option>
+					<option value="Pracovna doska 600 - 16mm">Pracovná doska 600 - 16mm</option>
+					<option value="Pracovna doska 920">Pracovná doska 920</option>
+					<option value="Rozne">Rozne</option>
+					<option value="Senosan">Senosan</option>
+					<option value="Zastena">Zástena</option>
+				</select>
+			</td>
+
+			<td>
+				<select name="thickness">
+					<option value="10">10 mm</option>
+					<option value="16">16 mm</option>
+					<option value="18">18 mm</option>
+					<option value="25">25 mm</option>
+					<option value="36">36 mm</option>
+					<option value="38">38 mm</option>
+				</select>
+			</td>
+
+			<td>
+				<input
+					type="text"
+					name="decor"
+					placeholder="Zadajte dekor"
+				>
+			</td>
+
+			<td>
+				<button type="button"
+						class="btn btn-remove"
+						onclick="removeRowMaterial(this)">
+					X
+				</button>
+			</td>
+		</tr>`;
+
+		tableBody.insertAdjacentHTML('beforeend', row);
+	}
+
+	function removeRowMaterial(button) {
+
+		let row = button.closest('tr');
+
+		row.remove();
+
+		updateRowNumberMaterial();
+
+	}
+
+	function updateRowNumberMaterial() {
+
+		const rows = document.querySelectorAll('#tableBodyMaterial tr');
+
+		rows.forEach((row, index) => {
+			row.querySelector('.row-number-material').innerText = index + 1;
+		});
+	}
+
 	function addRow() {
 
 		const tableBody = document.getElementById('tableBody');
@@ -478,6 +589,15 @@
 			});
 		}
 
+		const materialRows = [];
+		document.querySelectorAll('#tableBodyMaterial tr').forEach(row => {
+			materialRows.push({
+				material: row.querySelector('[name="material"]').value,
+				thickness: row.querySelector('[name="thickness"]').value,
+				decor: row.querySelector('[name="decor"]').value
+			});
+		});
+
 		window.formData = {
 			company: document.querySelector('[name="company"]').value,
 			address: document.querySelector('[name="address"]').value,
@@ -486,36 +606,182 @@
 			phone: document.querySelector('[name="phone"]').value,
 			email: document.querySelector('[name="email"]').value,
 
-			material: document.querySelector('[name="material"]').value,
-			thickness: document.querySelector('[name="thickness"]').value,
-			decor: document.querySelector('[name="decor"]').value,
-			anotherDecor: document.querySelector('[name="anotherDecor"]').value,
 			transport: document.querySelector('[name="transport"]').value,
 			orderType: document.querySelector('[name="orderType"]').value,
 			customerOrderReference: document.querySelector('[name="customerOrderReference"]').value,
 			additionalInformation: document.querySelector('[name="additionalInformation"]').value,
 
-			rows
+			rows,
+			materialRows
 		};
 
 		showModal(window.formData);
 	}
 
 	function showModal(data) {
-		console.log("data", data);
-
+		// ZÁKAZNÍK
 		let summary = `
-        <p><strong>Firma:</strong> ${data.company}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Telefón:</strong> ${data.phone}</p>
+        <h4>Údaje zákazníka</h4>
+
+        <div class="summary-grid">
+            <p><strong>Firma / meno:</strong> ${data.company || '-'}</p>
+            <p><strong>Adresa:</strong> ${data.address || '-'}</p>
+            <p><strong>Mesto:</strong> ${data.city || '-'}</p>
+            <p><strong>IČO / IČ DPH:</strong> ${data.ico || '-'}</p>
+            <p><strong>Telefón:</strong> ${data.phone || '-'}</p>
+            <p><strong>Email:</strong> ${data.email || '-'}</p>
+            <p><strong>Doprava:</strong> ${data.transport || '-'}</p>
+            <p><strong>Typ objednávky:</strong> ${data.orderType || '-'}</p>
+            <p><strong>Označenie objednávky:</strong> ${data.customerOrderReference || '-'}</p>
+        </div>
+
         <hr>
-        <p><strong>Materiál:</strong> ${data.material}</p>
-        <p><strong>Hrúbka:</strong> ${data.thickness}</p>
-        <p><strong>Dekor:</strong> ${data.decor}</p>
+
+        <h4>Materiál</h4>
+    `;
+		// MATERIÁLY
+		if (data.materialRows && data.materialRows.length > 0) {
+
+			summary += `
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Materiál</th>
+                        <th>Hrúbka</th>
+                        <th>Dekor</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+			data.materialRows.forEach((material, index) => {
+
+				summary += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${material.material || '-'}</td>
+                    <td>${material.thickness ? material.thickness + ' mm' : '-'}</td>
+                    <td>${material.decor || '-'}</td>
+                </tr>
+            `;
+
+			});
+
+			summary += `
+                </tbody>
+            </table>
+        `;
+
+		}
+		else {
+			summary += `<p>Nie je zadaný žiadny materiál.</p>`;
+		}
+
+		// ROZMERY
+		summary += `
         <hr>
-        <p><strong>Počet rozmerov:</strong> ${data.rows.length / 2}</p>
+
+        <h4>Rozmery</h4>
+
+        <p>
+            <strong>Počet rozmerov:</strong> ${data.rows.length}
+        </p>
     `;
 
+		if (data.rows && data.rows.length > 0) {
+
+			data.rows.forEach((row, index) => {
+
+				summary += `
+                <div class="summary-item">
+
+                    <h5>Rozmer ${index + 1}</h5>
+
+                    <div class="summary-grid">
+                        <p>
+                            <strong>Názov:</strong>
+                            ${row.title || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Dĺžka:</strong>
+                            ${row.length || '-'} mm
+                        </p>
+
+                        <p>
+                            <strong>Šírka:</strong>
+                            ${row.width || '-'} mm
+                        </p>
+
+                        <p>
+                            <strong>Počet kusov:</strong>
+                            ${row.numberOfPieces || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Hrúbka:</strong>
+                            ${row.hrubka || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Orientácia:</strong>
+                            ${row.orientacia || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Predná:</strong>
+                            ${row.predna || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Zadná:</strong>
+                            ${row.zadna || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Ľavá:</strong>
+                            ${row.lava || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Pravá:</strong>
+                            ${row.prava || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Blok:</strong>
+                            ${row.blok || '-'}
+                        </p>
+
+                        <p>
+                            <strong>Poznámka:</strong>
+                            ${row.note || '-'}
+                        </p>
+
+                    </div>
+
+                </div>
+            `;
+
+			});
+
+		} else {
+			summary += `<p>Nie sú zadané žiadne rozmery.</p>`;
+		}
+
+		// DOPLŇUJÚCE INFORMÁCIE
+		summary += `
+        <hr>
+
+        <h4>Doplňujúce informácie</h4>
+
+        <p>
+            ${data.additionalInformation || '-'}
+        </p>
+    `;
+
+		// ZOBRAZENIE
 		document.getElementById('modalSummary').innerHTML = summary;
 		document.getElementById('confirmModal').classList.add('show');
 		document.getElementById('confirmModal').classList.remove('hidden');

@@ -51,8 +51,7 @@ function save_order_form()
 	$file = fopen($file_path, 'w');
 
 	// 1. CUSTOMER INFO
-	fputcsv($file, ['Firma', 'Adresa', 'Mesto', 'ICO', 'Telefon', 'Email', 'Material', 'Hrubka', 'Dekor', 'Iny dekor',
-		'Doprava', 'Typ objednavky', 'Oznacenie objednavky']);
+	fputcsv($file, ['Firma', 'Adresa', 'Mesto', 'ICO', 'Telefon', 'Email', 'Doprava', 'Typ objednavky', 'Oznacenie objednavky']);
 
 	fputcsv($file, [
 		$data['company'],
@@ -61,14 +60,27 @@ function save_order_form()
 		$data['ico'],
 		$data['phone'],
 		$data['email'],
-		$data['material'],
-		$data['thickness'],
-		$data['decor'],
-		$data['anotherDecor'],
 		$data['transport'],
 		$data['orderType'],
 		$data['customerOrderReference'],
 	]);
+
+	// empty line
+	fputcsv($file, []);
+
+	// section label
+	fputcsv($file, ['--- SPECIFIKACIA MATERIALU ---']);
+
+	// items header
+	fputcsv($file, ['Material', 'Hrubka', 'Dekor']);
+
+	foreach ($data['materialRows'] as $row) {
+		fputcsv($file, [
+			$row['material'],
+			$row['thickness'],
+			$row['decor'],
+		]);
+	}
 
 	// empty line
 	fputcsv($file, []);

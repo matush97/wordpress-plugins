@@ -168,6 +168,7 @@ table select {
 	align-items: center;
 	gap: 30px;
 	margin-bottom: 20px;
+	padding-top: 50px
 }
 
 .max-dimensions-text {
@@ -335,4 +336,54 @@ table select {
 .section1-data td,
 .section2-data td {
 	padding: 10px;
+}
+
+.action-material {
+	width: 60px;
+}
+
+
+// showModal
+.summary-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 6px 20px;
+	margin-bottom: 15px;
+}
+
+.summary-grid p {
+	margin: 3px 0;
+}
+
+.summary-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 10px 0 20px;
+}
+
+.summary-table th,
+.summary-table td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+.summary-table th {
+	font-weight: 600;
+}
+
+.summary-item {
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.summary-item h5 {
+	margin: 0 0 10px;
+	font-size: 16px;
+}
+
+#modalSummary h4 {
+	margin: 10px 0;
 }
