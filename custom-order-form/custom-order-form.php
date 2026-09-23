@@ -34,117 +34,319 @@ add_action('init', 'create_block_custom_order_form_block_init');
 function save_order_form()
 {
 	$json = file_get_contents('php://input');
-
 	$data = json_decode($json, true);
 
-	if (!$data) {
+	if (!is_array($data)) {
 		wp_send_json_error([
-			'message' => 'Invalid JSON'
+			'message' => 'Neplatné dáta objednávky.'
 		]);
 	}
 
-	// ===== CSV GENERATION =====
+	/*
+	 * Základné údaje zákazníka
+	 */
+	$company = sanitize_text_field($data['company'] ?? '');
+	$address = sanitize_text_field($data['address'] ?? '');
+	$city = sanitize_text_field($data['city'] ?? '');
+	$ico = sanitize_text_field($data['ico'] ?? '');
+	$phone = sanitize_text_field($data['phone'] ?? '');
+	$email = sanitize_email($data['email'] ?? '');
 
+	$transport = sanitize_text_field($data['transport'] ?? '');
+	$orderType = sanitize_text_field($data['orderType'] ?? '');
+
+	$customerOrderReference =
+		sanitize_text_field($data['customerOrderReference'] ?? '');
+
+	$additionalInformation =
+		sanitize_textarea_field($data['additionalInformation'] ?? '');
+
+	/*
+	 * Rozmery
+	 */
+	$rows = [];
+
+	if (!empty($data['rows']) && is_array($data['rows'])) {
+
+		foreach ($data['rows'] as $row) {
+
+			$rows[] = [
+
+				// MATERIÁL
+				'material' => sanitize_text_field(
+					$row['material'] ?? ''
+				),
+
+				'thickness' => sanitize_text_field(
+					$row['thickness'] ?? ''
+				),
+
+				'decor' => sanitize_text_field(
+					$row['decor'] ?? ''
+				),
+
+				// ROZMER
+				'length' => sanitize_text_field(
+					$row['length'] ?? ''
+				),
+
+				'width' => sanitize_text_field(
+					$row['width'] ?? ''
+				),
+
+				'numberOfPieces' => sanitize_text_field(
+					$row['numberOfPieces'] ?? ''
+				),
+
+				'title' => sanitize_text_field(
+					$row['title'] ?? ''
+				),
+
+				'hrubka' => sanitize_text_field(
+					$row['hrubka'] ?? ''
+				),
+
+				'orientacia' => sanitize_text_field(
+					$row['orientacia'] ?? ''
+				),
+
+				// OLEPENIE
+				'note' => sanitize_text_field(
+					$row['note'] ?? ''
+				),
+
+				'predna' => sanitize_text_field(
+					$row['predna'] ?? ''
+				),
+
+				'zadna' => sanitize_text_field(
+					$row['zadna'] ?? ''
+				),
+
+				'lava' => sanitize_text_field(
+					$row['lava'] ?? ''
+				),
+
+				'prava' => sanitize_text_field(
+					$row['prava'] ?? ''
+				),
+
+				'blok' => sanitize_text_field(
+					$row['blok'] ?? ''
+				),
+			];
+		}
+	}
+
+
+	/*
+	 * Vytvorenie CSV
+	 */
 	$upload_dir = wp_upload_dir();
-	$file_path = $upload_dir['path'] . '/order_' . $data['company'] . '.csv';
+
+	$safe_company = sanitize_file_name($company);
+
+	if ($safe_company === '') {
+		$safe_company = 'zakaznik';
+	}
+
+	$file_path = $upload_dir['path']
+		. '/order_' . $safe_company . '_' . time() . '.csv';
+
 
 	$file = fopen($file_path, 'w');
 
-	// 1. CUSTOMER INFO
-	fputcsv($file, ['Firma', 'Adresa', 'Mesto', 'ICO', 'Telefon', 'Email', 'Material', 'Hrubka', 'Dekor', 'Iny dekor',
-		'Doprava', 'Typ objednavky', 'Oznacenie objednavky']);
+	if (!$file) {
+		wp_send_json_error([
+			'message' => 'Nepodarilo sa vytvoriť súbor objednávky.'
+		]);
+	}
 
+
+	/*
+	 * CUSTOMER INFO
+	 */
 	fputcsv($file, [
-		$data['company'],
-		$data['address'],
-		$data['city'],
-		$data['ico'],
-		$data['phone'],
-		$data['email'],
-		$data['material'],
-		$data['thickness'],
-		$data['decor'],
-		$data['anotherDecor'],
-		$data['transport'],
-		$data['orderType'],
-		$data['customerOrderReference'],
+		'Firma',
+		'Adresa',
+		'Mesto',
+		'ICO',
+		'Telefon',
+		'Email',
+		'Doprava',
+		'Typ objednavky',
+		'Oznacenie objednavky'
 	]);
 
-	// empty line
+	fputcsv($file, [
+		$company,
+		$address,
+		$city,
+		$ico,
+		$phone,
+		$email,
+		$transport,
+		$orderType,
+		$customerOrderReference
+	]);
+
+
+	/*
+	 * PRÁZDNÝ RIADOK
+	 */
 	fputcsv($file, []);
 
-	// section label
-	fputcsv($file, ['--- POLOZKY ---']);
 
-	// items header
-	fputcsv($file, ['Dlzka', 'Sirka', 'Kusy', 'Nazov', 'Poznamka', 'Hrubka', 'Orientacia',
-		'Predna', 'Zadna', 'Lava', 'Prava', 'Blok']);
+	/*
+	 * POLOŽKY
+	 */
+	fputcsv($file, [
+		'--- POLOZKY ---'
+	]);
 
-	foreach ($data['rows'] as $row) {
+
+	/*
+	 * HLAVIČKA TABUĽKY
+	 *
+	 * Materiál, hrúbka a dekor sú teraz
+	 * súčasťou KAŽDÉHO rozmeru.
+	 */
+	fputcsv($file, [
+		'Material',
+		'Hrubka materialu',
+		'Dekor',
+		'Dlzka',
+		'Sirka',
+		'Kusy',
+		'Nazov',
+		'Poznamka',
+		'Hrubka dielca',
+		'Orientacia',
+		'Predna',
+		'Zadna',
+		'Lava',
+		'Prava',
+		'Blok'
+	]);
+
+
+	/*
+	 * KAŽDÝ ROZMER
+	 */
+	foreach ($rows as $row) {
+
 		fputcsv($file, [
+
+			// materiál
+			$row['material'],
+
+			// hrúbka materiálu
+			$row['thickness'],
+
+			// dekor
+			$row['decor'],
+
+			// rozmer
 			$row['length'],
 			$row['width'],
 			$row['numberOfPieces'],
+
+			// ostatné
 			$row['title'],
 			$row['note'],
 			$row['hrubka'],
 			$row['orientacia'],
+
+			// olepenie
 			$row['predna'],
 			$row['zadna'],
 			$row['lava'],
 			$row['prava'],
-			$row['blok'],
+			$row['blok']
 		]);
 	}
+
 
 	fclose($file);
 
-	// EMAIL
+
+	/*
+	 * EMAIL ADMINISTRÁTOROVI
+	 */
 	$to = 'porez@altaviafactory.sk';
-	$subject = "Nová objednávka {$data['company']}";
-	$message = "Objednávka je v prílohe. Spolocnost {$data['company']}, ICO {$data['ico']}.
-				Doplnujuce informacie od zakaznika:
-				{$data['additionalInformation']}";
+
+	$subject = 'Nová objednávka - ' . $company;
+
+	$message =
+		"Nová objednávka.\n\n" .
+		"Spoločnosť: {$company}\n" .
+		"IČO: {$ico}\n" .
+		"Email: {$email}\n" .
+		"Telefón: {$phone}\n\n" .
+		"Doprava: {$transport}\n" .
+		"Typ objednávky: {$orderType}\n" .
+		"Označenie objednávky: {$customerOrderReference}\n\n" .
+		"Počet rozmerov: " . count($rows) . "\n\n" .
+		"Doplňujúce informácie:\n" .
+		$additionalInformation;
+
+
 	$attachments = [$file_path];
 
-	$sent = wp_mail($to, $subject, $message, [], $attachments);
 
-	if (!$sent) {
-		wp_send_json_error([
-			'message' => 'Email sa nepodarilo odoslať'
-		]);
-	}
-
-	// POTVRDENIE KLIENTOVI
-
-	$customerEmail = sanitize_email($data['email']);
-
-	$customerSubject = 'Potvrdenie prijatia objednávky';
-
-	$customerMessage = "
-		Dobrý deň,
-		ďakujeme za Vašu objednávku.
-		Vaša požiadavka bola úspešne prijatá a bude spracovaná naším tímom.
-		Referenčné číslo objednávky: {$data['customerOrderReference']}
-
-		V prípade otázok nás kontaktujte.
-
-		S pozdravom
-		Altavia Factory
-	";
-
-	wp_mail(
-		$customerEmail,
-		$customerSubject,
-		$customerMessage,
+	$sent = wp_mail(
+		$to,
+		$subject,
+		$message,
 		[],
 		$attachments
 	);
 
-	// ===== RESPONSE =====
 
+	if (!$sent) {
+
+		wp_send_json_error([
+			'message' => 'Email sa nepodarilo odoslať.'
+		]);
+	}
+
+
+	/*
+	 * POTVRDENIE ZÁKAZNÍKOVI
+	 */
+	if ($email !== '') {
+
+		$customerSubject =
+			'Potvrdenie prijatia objednávky';
+
+		$customerMessage =
+			"Dobrý deň,\n\n" .
+			"ďakujeme za Vašu objednávku.\n\n" .
+			"Vaša požiadavka bola úspešne prijatá " .
+			"a bude spracovaná naším tímom.\n\n" .
+			"Referenčné číslo objednávky: " .
+			$customerOrderReference .
+			"\n\n" .
+			"V prípade otázok nás kontaktujte.\n\n" .
+			"S pozdravom\n" .
+			"Altavia Factory";
+
+
+		wp_mail(
+			$email,
+			$customerSubject,
+			$customerMessage,
+			[],
+			$attachments
+		);
+	}
+
+
+	/*
+	 * RESPONSE
+	 */
 	wp_send_json_success([
-		'message' => 'Objednávka uložená'
+		'message' => 'Objednávka bola úspešne odoslaná.'
 	]);
 }
 

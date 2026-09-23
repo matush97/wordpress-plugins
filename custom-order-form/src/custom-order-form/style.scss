@@ -95,19 +95,6 @@ table select {
 	min-width: unset;
 }
 
-//#cutTable input,
-//#cutTable select {
-//	padding: 4px 6px;
-//}
-//#cutTable {
-//	font-size: 13px;
-//}
-//
-//#cutTable input,
-//#cutTable select {
-//	font-size: 13px;
-//}
-
 .btn {
 	padding: 10px 16px;
 	border: none;
@@ -335,4 +322,73 @@ table select {
 .section1-data td,
 .section2-data td {
 	padding: 10px;
+}
+
+//new
+#cutTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#cutTable td,
+#cutTable th {
+	vertical-align: middle;
+}
+
+//#cutTable .section1-material {
+//	background: #444;
+//	color: #fff;
+//}
+
+#cutTable .section1-material > td:not(.row-number) {
+	padding: 8px;
+}
+
+#cutTable .section1-material label,
+#cutTable .section1-data label,
+#cutTable .section2-data label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+#cutTable .section1-material select,
+#cutTable .section1-material input,
+#cutTable .section1-data input,
+#cutTable .section1-data select,
+#cutTable .section2-data input,
+#cutTable .section2-data select {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#cutTable .row-number {
+	width: 45px;
+	text-align: center;
+	font-size: 20px;
+	background: #fff;
+	color: #555;
+}
+
+#cutTable .section1-data,
+#cutTable .section2-data {
+	background: #fff;
+}
+
+#cutTable .section1-data td,
+#cutTable .section2-data td {
+	padding: 8px;
+}
+
+#cutTable .section2-data {
+	border-top: 1px solid #ddd;
+}
+
+#cutTable .section1-material td:last-child {
+	width: 55px;
+}
+
+#cutTable .btn-remove {
+	margin: 0;
 }
