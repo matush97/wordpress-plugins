@@ -811,7 +811,6 @@
 	}
 
 	function showModal(data) {
-		console.log("data", data)
 		let summary = `
         <h4>Údaje zákazníka</h4>
 
@@ -947,23 +946,354 @@
 		document.getElementById('confirmModal').classList.add('hidden');
 	}
 
-	async function confirmSend() {
+	function resetOrderForm() {
 
-		closeModal();
+		// ==========================================
+		// ZÁKLADNÉ ÚDAJE ZÁKAZNÍKA
+		// ==========================================
 
-		let response = await fetch('/wp-admin/admin-ajax.php?action=save_order_form', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(window.formData)
+		const fields = [
+			'company',
+			'address',
+			'city',
+			'ico',
+			'phone',
+			'email',
+			'customerOrderReference',
+			'additionalInformation'
+		];
+
+		fields.forEach(name => {
+
+			const field = document.querySelector(`[name="${name}"]`);
+
+			if (field) {
+				field.value = '';
+			}
+
 		});
 
-		let result = await response.json();
 
-		console.log("result", result);
+		// ==========================================
+		// SELECTY - ZÁKLADNÉ ÚDAJE
+		// ==========================================
 
-		alert("Objednávka odoslaná");
+		const transport = document.querySelector('[name="transport"]');
+
+		if (transport) {
+			transport.selectedIndex = 0;
+		}
+
+
+		const orderType = document.querySelector('[name="orderType"]');
+
+		if (orderType) {
+			orderType.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// TABUĽKA ROZMEROV
+		// ==========================================
+
+		const tableBody = document.getElementById('tableBody');
+
+		if (!tableBody) {
+			window.formData = null;
+			return;
+		}
+
+
+		// ==========================================
+		// ODSTRÁNENIE VŠETKÝCH PRIDANÝCH ROZMEROV
+		// ==========================================
+
+		const topRows =
+			tableBody.querySelectorAll('.cut-row-top');
+
+		topRows.forEach((topRow, index) => {
+
+			// Prvý rozmer ponecháme.
+			if (index === 0) {
+				return;
+			}
+
+			// Druhý riadok patriaci k tomuto rozmeru.
+			const bottomRow = topRow.nextElementSibling;
+
+			if (bottomRow) {
+				bottomRow.remove();
+			}
+
+			topRow.remove();
+
+		});
+
+
+		// ==========================================
+		// PRVÝ ROZMER
+		// ==========================================
+
+		const firstTopRow =
+			tableBody.querySelector('.cut-row-top');
+
+		const firstBottomRow =
+			firstTopRow?.nextElementSibling;
+
+
+		if (!firstTopRow) {
+			window.formData = null;
+			return;
+		}
+
+
+		// ==========================================
+		// MATERIÁL
+		// ==========================================
+
+		const material =
+			firstTopRow.querySelector('[name="material"]');
+
+		if (material) {
+			material.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// HRÚBKA MATERIÁLU
+		// ==========================================
+
+		const thickness =
+			firstTopRow.querySelector('[name="thickness"]');
+
+		if (thickness) {
+			thickness.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// DEKOR
+		// ==========================================
+
+		const decor =
+			firstTopRow.querySelector('[name="decor"]');
+
+		if (decor) {
+			decor.value = '';
+		}
+
+
+		// ==========================================
+		// NÁZOV
+		// ==========================================
+
+		const title =
+			firstTopRow.querySelector('[name="title"]');
+
+		if (title) {
+			title.value = '';
+		}
+
+
+		// ==========================================
+		// DĹŽKA
+		// ==========================================
+
+		const length =
+			firstTopRow.querySelector('[name="length"]');
+
+		if (length) {
+			length.value = '';
+		}
+
+
+		// ==========================================
+		// ŠÍRKA
+		// ==========================================
+
+		const width =
+			firstTopRow.querySelector('[name="width"]');
+
+		if (width) {
+			width.value = '';
+		}
+
+
+		// ==========================================
+		// KS
+		// ==========================================
+
+		const pieces =
+			firstTopRow.querySelector('[name="numberOfPieces"]');
+
+		if (pieces) {
+			pieces.value = '';
+		}
+
+
+		// ==========================================
+		// HRÚBKA DIELCA
+		// ==========================================
+
+		const hrubka =
+			firstTopRow.querySelector('[name="hrubka"]');
+
+		if (hrubka) {
+			hrubka.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// ORIENTÁCIA
+		// ==========================================
+
+		const orientacia =
+			firstTopRow.querySelector('[name="orientacia"]');
+
+		if (orientacia) {
+			orientacia.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// POZNÁMKA
+		// ==========================================
+
+		const note =
+			firstBottomRow?.querySelector('[name="note"]');
+
+		if (note) {
+			note.value = '';
+		}
+
+
+		// ==========================================
+		// PREDNÁ
+		// ==========================================
+
+		const predna =
+			firstBottomRow?.querySelector('[name="predna"]');
+
+		if (predna) {
+			predna.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// ZADNÁ
+		// ==========================================
+
+		const zadna =
+			firstBottomRow?.querySelector('[name="zadna"]');
+
+		if (zadna) {
+			zadna.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// ĽAVÁ
+		// ==========================================
+
+		const lava =
+			firstBottomRow?.querySelector('[name="lava"]');
+
+		if (lava) {
+			lava.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// PRAVÁ
+		// ==========================================
+
+		const prava =
+			firstBottomRow?.querySelector('[name="prava"]');
+
+		if (prava) {
+			prava.selectedIndex = 0;
+		}
+
+
+		// ==========================================
+		// BLOK
+		// ==========================================
+
+		const blok =
+			firstBottomRow?.querySelector('[name="blok"]');
+
+		if (blok) {
+			blok.value = '';
+		}
+
+
+		// ==========================================
+		// ČÍSLOVANIE
+		// ==========================================
+
+		updateRowNumbers();
+
+
+		// ==========================================
+		// VYMAZANIE ULOŽENÝCH DÁT
+		// ==========================================
+
+		window.formData = null;
+	}
+
+	async function confirmSend() {
+
+		try {
+
+			const response = await fetch(
+				'/wp-admin/admin-ajax.php?action=save_order_form',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(window.formData)
+				}
+			);
+
+			const result = await response.json();
+
+			console.log("result", result);
+
+
+			// ==========================================
+			// KONTROLA ÚSPEŠNÉHO ODOSLANIA
+			// ==========================================
+
+			if (!result.success) {
+
+				alert(
+					result.data?.message ||
+					'Objednávku sa nepodarilo odoslať.'
+				);
+
+				return;
+			}
+
+
+			// ==========================================
+			// ODOSLANÉ ÚSPEŠNE
+			// ==========================================
+
+			closeModal();
+
+			resetOrderForm();
+
+			alert("Objednávka bola úspešne odoslaná.");
+
+		} catch (error) {
+
+			console.error(error);
+
+			alert(
+				'Pri odosielaní objednávky nastala chyba.'
+			);
+		}
 	}
 
 	function sendInformationFromTemplateModal() {
