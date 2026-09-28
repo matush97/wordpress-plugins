@@ -1,15 +1,6 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-.wp-block-create-block-custom-order-form {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
-}
+/* =========================================================
+   ZÁKLAD
+   ========================================================= */
 
 .custom-form *,
 .custom-form *::before,
@@ -18,13 +9,14 @@
 	font-family: Arial, sans-serif;
 }
 
-body {
-	margin: 0;
-	padding: 30px;
-	background: #f2f2f2;
+.custom-form {
+	width: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
 }
 
 .card {
+	width: 100%;
 	background: #fff;
 	border: 1px solid #ccc;
 	border-radius: 8px;
@@ -32,20 +24,20 @@ body {
 	margin-bottom: 30px;
 }
 
-h2 {
-	margin-top: 0;
-	margin-bottom: 25px;
-}
+
+/* =========================================================
+   FORMULÁR ZÁKAZNÍKA
+   ========================================================= */
 
 .form-grid {
 	display: grid;
-	grid-template-columns: 220px 1fr;
+	grid-template-columns: 220px minmax(0, 1fr);
 	gap: 12px 20px;
 	align-items: center;
 }
 
 .custom-form input,
-.custom-form select{
+.custom-form select {
 	width: 100%;
 	padding: 10px;
 	border: 1px solid #bbb;
@@ -53,47 +45,335 @@ h2 {
 	font-size: 14px;
 }
 
+
+/* =========================================================
+   MAXIMÁLNY ROZMER
+   ========================================================= */
+
+.max-dimensions-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 30px;
+	margin-bottom: 25px;
+}
+
+.max-dimensions-text {
+	flex: 1;
+}
+
+.max-dimensions-image {
+	flex: 0 0 300px;
+}
+
+.max-dimensions-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+
+/* =========================================================
+   TABUĽKA
+   ========================================================= */
+
 .table-wrapper {
+	width: 100%;
+	max-width: 100%;
 	overflow-x: auto;
+	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 768px) {
-
-	table {
-		min-width: 1200px;
-	}
-
-}
-
-table input,
-table select {
+#cutTable {
 	width: 100%;
-	min-width: unset;
-}
-
-.custom-form table {
-	width: 100%;
+	min-width: 0;
 	border-collapse: collapse;
+	table-layout: fixed;
+	font-size: 12px;
 }
 
-table th {
-	background: #444;
-	color: #fff;
-	padding: 10px;
-	font-size: 14px;
-}
-
-.custom-form table td {
-	padding: 8px;
+#cutTable td {
+	padding: 6px;
 	border: 1px solid #ddd;
+	vertical-align: middle;
 }
 
-table input,
-table select {
-	width: 100%;
-	min-width: unset;
+
+/* =========================================================
+   LABELY
+   ========================================================= */
+
+#cutTable label {
+	display: block;
+	font-size: 11px;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 4px;
+	white-space: nowrap;
 }
+
+
+/* =========================================================
+   INPUTY A SELECTY
+   ========================================================= */
+
+#cutTable input,
+#cutTable select {
+	display: block;
+	width: 100%;
+	min-width: 0 !important;
+	height: 34px;
+	padding: 5px 7px;
+	font-size: 12px;
+	line-height: 1.2;
+	box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ČÍSLO ROZMERU
+   ========================================================= */
+
+#cutTable .row-number {
+	width: 42px;
+	min-width: 42px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 18px;
+	font-weight: 400;
+	color: #333;
+}
+
+
+/* =========================================================
+   MATERIÁL
+   ========================================================= */
+
+#cutTable .section1-material td:nth-child(2) {
+	width: 130px;
+}
+
+
+/* =========================================================
+   HRÚBKA MATERIÁLU
+   ========================================================= */
+
+#cutTable .section1-material td:nth-child(3) {
+	width: 95px;
+}
+
+
+/* =========================================================
+   DEKOR
+   ========================================================= */
+
+#cutTable .section1-material td:nth-child(4) {
+	width: 210px;
+}
+
+
+/* =========================================================
+   PRÁZDNA ČASŤ V MATERIÁLOVOM RIADKU
+   ========================================================= */
+
+#cutTable .section1-material td:nth-child(5) {
+	width: auto;
+}
+
+
+/* =========================================================
+   NÁZOV
+   ========================================================= */
+
+#cutTable .section1-data td:first-child {
+	width: 150px;
+}
+
+
+/* =========================================================
+   DĹŽKA
+   ========================================================= */
+
+#cutTable .section1-data td:nth-child(2) {
+	width: 85px;
+}
+
+
+/* =========================================================
+   ŠÍRKA
+   ========================================================= */
+
+#cutTable .section1-data td:nth-child(4) {
+	width: 85px;
+}
+
+
+/* =========================================================
+   KS
+   ========================================================= */
+
+#cutTable .section1-data td:nth-child(5) {
+	width: 60px;
+}
+
+
+/* =========================================================
+   HRÚBKA DIELCA
+   ========================================================= */
+
+#cutTable .section1-data td:nth-child(6) {
+	width: 90px;
+}
+
+
+/* =========================================================
+   ORIENTÁCIA
+   ========================================================= */
+
+#cutTable .section1-data td:nth-child(7) {
+	width: 100px;
+}
+
+
+/* =========================================================
+   POZNÁMKA
+   ========================================================= */
+
+#cutTable .section2-data td:first-child {
+	width: 240px;
+}
+
+
+/* =========================================================
+   HRANY
+   ========================================================= */
+
+#cutTable .section2-data td:nth-child(2),
+#cutTable .section2-data td:nth-child(4),
+#cutTable .section2-data td:nth-child(5),
+#cutTable .section2-data td:nth-child(6) {
+	width: 75px;
+}
+
+
+/* =========================================================
+   ŠÍPKA
+   ========================================================= */
+
+#cutTable .section2-data td:nth-child(3) {
+	width: 40px;
+	text-align: center;
+}
+
+
+/* =========================================================
+   BLOK
+   ========================================================= */
+
+#cutTable .section2-data td:nth-child(7) {
+	width: 70px;
+}
+
+
+/* =========================================================
+   ODSTRÁNENIE ROZMERU
+   ========================================================= */
+
+#cutTable .section1-material td:last-child {
+	width: 45px;
+}
+
+#cutTable .btn-remove {
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	margin: 0;
+	font-size: 13px;
+}
+
+
+/* =========================================================
+   ŠÍPKA PRE KOPÍROVANIE OLEPENIA
+   ========================================================= */
+
+#cutTable .copy-edge-btn {
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	margin: 0 auto;
+	border: none;
+	border-radius: 50%;
+	background: #0d6efd;
+	color: #fff;
+	font-size: 13px;
+	line-height: 28px;
+	cursor: pointer;
+}
+
+#cutTable .copy-edge-btn:hover {
+	opacity: 0.9;
+}
+
+
+/* =========================================================
+   OLEPENIE - VIZUÁLNE HRANY
+   ========================================================= */
+
+#cutTable .edge-front {
+	border-bottom: 4px solid #000 !important;
+}
+
+#cutTable .edge-back {
+	border-top: 4px solid #000 !important;
+}
+
+#cutTable .edge-left {
+	border-left: 4px solid #000 !important;
+}
+
+#cutTable .edge-right {
+	border-right: 4px solid #000 !important;
+}
+
+
+/* =========================================================
+   RIADKY
+   ========================================================= */
+
+#cutTable .section1-material {
+	background: #fff;
+}
+
+#cutTable .section1-data {
+	background: #fff;
+}
+
+#cutTable .section2-data {
+	background: #fff;
+	border-top: 1px solid #ddd;
+}
+
+
+/* =========================================================
+   HORNÉ A DOLNÉ ODSADENIE
+   ========================================================= */
+
+#cutTable .section1-material > td {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+#cutTable .section1-data > td,
+#cutTable .section2-data > td {
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+
+/* =========================================================
+   TLAČIDLÁ
+   ========================================================= */
 
 .btn {
 	padding: 10px 16px;
@@ -136,54 +416,21 @@ table select {
 	gap: 10px;
 }
 
-.max-info {
-	margin-bottom: 15px;
-	font-weight: bold;
-}
 
-@media(max-width: 768px) {
+/* =========================================================
+   DOPLŇUJÚCE INFORMÁCIE
+   ========================================================= */
 
-	.form-grid {
-		grid-template-columns:1fr;
-	}
-
-}
-
-.max-dimensions-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 30px;
-	margin-bottom: 20px;
-}
-
-.max-dimensions-text {
-	flex: 1;
-}
-
-.max-dimensions-image {
-	flex: 0 0 300px;
-}
-
-.max-dimensions-image img {
+[name="additionalInformation"] {
 	width: 100%;
-	height: auto;
-	display: block;
-}
-
-@media (max-width: 768px) {
-	.max-dimensions-header {
-		flex-direction: column;
-	}
-
-	.max-dimensions-image {
-		width: 100%;
-		max-width: 300px;
-	}
+	min-height: 45px;
 }
 
 
-//modal
+/* =========================================================
+   MODAL
+   ========================================================= */
+
 .modal {
 	position: fixed;
 	inset: 0;
@@ -203,9 +450,10 @@ table select {
 }
 
 .modal-content {
-	background: white;
+	background: #fff;
 	padding: 20px;
 	width: 600px;
+	max-width: calc(100vw - 30px);
 	max-height: 80vh;
 	overflow-y: auto;
 	border-radius: 10px;
@@ -218,177 +466,33 @@ table select {
 	margin-top: 20px;
 }
 
-.edge-front {
-	border-bottom: 4px solid #000 !important;
-}
 
-.edge-back {
-	border-top: 4px solid #000 !important;
-}
+/* =========================================================
+   MOBIL
+   ========================================================= */
 
-.edge-left {
-	border-left: 4px solid #000 !important;
-}
+@media (max-width: 768px) {
 
-.edge-right {
-	border-right: 4px solid #000 !important;
-}
+	.form-grid {
+		grid-template-columns: 1fr;
+	}
 
-.edge-copy-wrapper {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
+	.max-dimensions-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 
-.copy-edge-btn {
-	width: 24px;
-	height: 24px;
-	border: none;
-	border-radius: 50%;
-	background: #0d6efd;
-	color: white;
-	cursor: pointer;
-	font-size: 14px;
-	line-height: 1;
-}
+	.max-dimensions-image {
+		width: 100%;
+		max-width: 300px;
+		margin: 0 auto;
+	}
 
-.copy-edge-btn:hover {
-	opacity: 0.9;
-}
+	.table-wrapper {
+		overflow-x: auto;
+	}
 
-.row-number {
-	width: 40px;
-}
-
-.arrow-column {
-	width: 35px;
-}
-
-.name-column {
-	width: 200px;
-}
-
-.orientation-column {
-	width: 110px;
-}
-
-.row-top td {
-	border-bottom: none;
-}
-
-.row-bottom td {
-	border-top: none;
-}
-
-#cutTable + #cutTable {
-	margin-top: -1px;
-}
-
-#cutTable + #cutTable thead th {
-	background: #555;
-	font-size: 13px;
-}
-
-#cutTable + #cutTable tbody td {
-	border-top: none;
-}
-
-#cutTable thead tr:first-child th {
-	background: #444;
-}
-
-#cutTable thead tr:nth-child(2) th {
-	background: #555;
-	font-size: 13px;
-}
-
-.section1-header th,
-.section2-header th {
-	background: #444;
-	color: #fff;
-	padding: 10px;
-}
-
-.section2-header th {
-	background: #555;
-}
-
-.row-number {
-	text-align: center;
-	vertical-align: middle;
-	font-size: 24px;
-}
-
-.section1-data td,
-.section2-data td {
-	padding: 10px;
-}
-
-//new
-#cutTable {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-#cutTable td,
-#cutTable th {
-	vertical-align: middle;
-}
-
-//#cutTable .section1-material {
-//	background: #444;
-//	color: #fff;
-//}
-
-#cutTable .section1-material > td:not(.row-number) {
-	padding: 8px;
-}
-
-#cutTable .section1-material label,
-#cutTable .section1-data label,
-#cutTable .section2-data label {
-	display: block;
-	font-size: 13px;
-	font-weight: 600;
-	margin-bottom: 5px;
-}
-
-#cutTable .section1-material select,
-#cutTable .section1-material input,
-#cutTable .section1-data input,
-#cutTable .section1-data select,
-#cutTable .section2-data input,
-#cutTable .section2-data select {
-	width: 100%;
-	box-sizing: border-box;
-}
-
-#cutTable .row-number {
-	width: 45px;
-	text-align: center;
-	font-size: 20px;
-	background: #fff;
-	color: #555;
-}
-
-#cutTable .section1-data,
-#cutTable .section2-data {
-	background: #fff;
-}
-
-#cutTable .section1-data td,
-#cutTable .section2-data td {
-	padding: 8px;
-}
-
-#cutTable .section2-data {
-	border-top: 1px solid #ddd;
-}
-
-#cutTable .section1-material td:last-child {
-	width: 55px;
-}
-
-#cutTable .btn-remove {
-	margin: 0;
+	#cutTable {
+		min-width: 1250px;
+	}
 }

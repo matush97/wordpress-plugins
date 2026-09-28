@@ -35,39 +35,6 @@
 			<label>Email *</label>
 			<input type="email" name="email">
 
-<!--			<label>Materiál *</label>-->
-<!--			<select name="material">-->
-<!--				<option value="DTD Laminovana">DTD Laminovaná</option>-->
-<!--				<option value="DTD Dyhovana">DTD Dýhovaná</option>-->
-<!--				<option value="DTD Surova">DTD Surová</option>-->
-<!--				<option value="HDF (Sololit)">HDF (Sololit)</option>-->
-<!--				<option value="MDF Dýhovaná">MDF Dýhovaná</option>-->
-<!--				<option value="MDF obojst. biela">MDF obojst. biela</option>-->
-<!--				<option value="MDF Surova">MDF Surová</option>-->
-<!--				<option value="Pracovna doska 600">Pracovná doska 600</option>-->
-<!--				<option value="Pracovna doska 600 - 16mm">Pracovná doska 600 - 16mm</option>-->
-<!--				<option value="Pracovna doska 920">Pracovná doska 920</option>-->
-<!--				<option value="Rozne">Rozne</option>-->
-<!--				<option value="Senosan">Senosan</option>-->
-<!--				<option value="Zastena">Zástena</option>-->
-<!--			</select>-->
-<!---->
-<!--			<label>Hrúbka</label>-->
-<!--			<select name="thickness">-->
-<!--				<option value="10">10 mm</option>-->
-<!--				<option value="16">16 mm</option>-->
-<!--				<option value="18">18 mm</option>-->
-<!--				<option value="25">25 mm</option>-->
-<!--				<option value="36">36 mm</option>-->
-<!--				<option value="38">38 mm</option>-->
-<!--			</select>-->
-<!---->
-<!--			<label>Dekor</label>-->
-<!--			<input type="text" name="decor">-->
-<!---->
-<!--			<label>Iný dekor</label>-->
-<!--			<input type="text" name="anotherDecor">-->
-
 			<label>Doprava</label>
 			<select name="transport">
 				<option value="osobne vyzdvihnutie">Osobné vyzdvihnutie</option>
@@ -106,13 +73,21 @@
 
 			<table id="cutTable">
 				<tbody id="tableBody">
-				<!-- RIADOK 1: MATERIÁL -->
-				<tr class="section1-material">
 
-					<td rowspan="3" class="row-number">1</td>
+				<!-- =========================
+					 ROZMER 1 - RIADOK 1
+					 ========================= -->
+				<tr class="cut-row cut-row-top">
 
-					<td>
+					<!-- ČÍSLO -->
+					<td rowspan="2" class="row-number">
+						1
+					</td>
+
+					<!-- MATERIÁL -->
+					<td class="col-material">
 						<label>Materiál *</label>
+
 						<select name="material">
 							<option value="DTD Laminovana">DTD Laminovaná</option>
 							<option value="DTD Dyhovana">DTD Dýhovaná</option>
@@ -122,16 +97,22 @@
 							<option value="MDF obojst. biela">MDF obojst. biela</option>
 							<option value="MDF Surova">MDF Surová</option>
 							<option value="Pracovna doska 600">Pracovná doska 600</option>
-							<option value="Pracovna doska 600 - 16mm">Pracovná doska 600 - 16mm</option>
-							<option value="Pracovna doska 920">Pracovná doska 920</option>
+							<option value="Pracovna doska 600 - 16mm">
+								Pracovná doska 600 - 16mm
+							</option>
+							<option value="Pracovna doska 920">
+								Pracovná doska 920
+							</option>
 							<option value="Rozne">Rozne</option>
 							<option value="Senosan">Senosan</option>
 							<option value="Zastena">Zástena</option>
 						</select>
 					</td>
 
-					<td>
+					<!-- HRÚBKA MATERIÁLU -->
+					<td class="col-material-thickness">
 						<label>Hrúbka *</label>
+
 						<select name="thickness">
 							<option value="10">10 mm</option>
 							<option value="16">16 mm</option>
@@ -142,52 +123,61 @@
 						</select>
 					</td>
 
-					<td>
+					<!-- DEKOR -->
+					<td class="col-decor">
 						<label>Dekor *</label>
-						<input type="text" name="decor">
+
+						<input
+							type="text"
+							name="decor"
+							placeholder=""
+						>
 					</td>
 
-					<td colspan="5"></td>
-
-					<td rowspan="3">
-						<button
-							type="button"
-							class="btn btn-remove"
-							onclick="removeRow(this)">
-							X
-						</button>
-					</td>
-
-				</tr>
-
-
-				<!-- RIADOK 2: ROZMER -->
-				<tr class="section1-data">
-
-					<td>
+					<!-- NÁZOV -->
+					<td class="col-title">
 						<label>Názov</label>
-						<input class="name-column" type="text" name="title">
+
+						<input
+							type="text"
+							name="title"
+						>
 					</td>
 
-					<td>
+					<!-- DĹŽKA -->
+					<td class="col-length">
 						<label>Dĺžka *</label>
-						<input type="text" name="length">
+
+						<input
+							type="text"
+							name="length"
+						>
 					</td>
 
-					<td></td>
-
-					<td>
+					<!-- ŠÍRKA -->
+					<td class="col-width">
 						<label>Šírka *</label>
-						<input type="text" name="width">
+
+						<input
+							type="text"
+							name="width"
+						>
 					</td>
 
-					<td>
+					<!-- KS -->
+					<td class="col-pieces">
 						<label>Ks *</label>
-						<input type="text" name="numberOfPieces">
+
+						<input
+							type="text"
+							name="numberOfPieces"
+						>
 					</td>
 
-					<td>
+					<!-- HRÚBKA DIELCA -->
+					<td class="col-part-thickness">
 						<label>Hrúbka</label>
+
 						<select name="hrubka">
 							<option value=""></option>
 							<option value="dvojita (duplak)">
@@ -196,28 +186,61 @@
 						</select>
 					</td>
 
-					<td>
+					<!-- ORIENTÁCIA -->
+					<td class="col-orientation">
 						<label>Orientácia</label>
+
 						<select name="orientacia">
-							<option value="neotacat">neotáčať</option>
-							<option value="otacat">otáčať</option>
+							<option value="neotacat">
+								neotáčať
+							</option>
+
+							<option value="otacat">
+								otáčať
+							</option>
 						</select>
+					</td>
+
+					<!-- ODSTRÁNIŤ -->
+					<td rowspan="2" class="col-remove">
+						<button
+							type="button"
+							class="btn btn-remove"
+							onclick="removeRow(this)"
+						>
+							X
+						</button>
 					</td>
 
 				</tr>
 
 
-				<!-- RIADOK 3: OLEPENIE -->
-				<tr class="section2-data">
+				<!-- =========================
+					 ROZMER 1 - RIADOK 2
+					 ========================= -->
+				<tr class="cut-row cut-row-bottom">
 
-					<td>
+					<!-- POZNÁMKA -->
+					<td
+						colspan="3"
+						class="col-note"
+					>
 						<label>Poznámka</label>
-						<input type="text" name="note">
+
+						<input
+							type="text"
+							name="note"
+						>
 					</td>
 
-					<td>
+					<!-- PREDNÁ -->
+					<td class="col-edge">
 						<label>Predná</label>
-						<select name="predna" class="edge-front">
+
+						<select
+							name="predna"
+							class="edge-front"
+						>
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -226,13 +249,24 @@
 						</select>
 					</td>
 
-					<td>
-						<button type="button" class="copy-edge-btn">➜</button>
+					<!-- ŠÍPKA -->
+					<td class="col-arrow">
+						<button
+							type="button"
+							class="copy-edge-btn"
+						>
+							➜
+						</button>
 					</td>
 
-					<td>
+					<!-- ZADNÁ -->
+					<td class="col-edge">
 						<label>Zadná</label>
-						<select name="zadna" class="edge-back">
+
+						<select
+							name="zadna"
+							class="edge-back"
+						>
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -241,9 +275,14 @@
 						</select>
 					</td>
 
-					<td>
+					<!-- ĽAVÁ -->
+					<td class="col-edge">
 						<label>Ľavá</label>
-						<select name="lava" class="edge-left">
+
+						<select
+							name="lava"
+							class="edge-left"
+						>
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -252,9 +291,14 @@
 						</select>
 					</td>
 
-					<td>
+					<!-- PRAVÁ -->
+					<td class="col-edge">
 						<label>Pravá</label>
-						<select name="prava" class="edge-right">
+
+						<select
+							name="prava"
+							class="edge-right"
+						>
 							<option value=""></option>
 							<option>0.5</option>
 							<option>0.8</option>
@@ -263,15 +307,19 @@
 						</select>
 					</td>
 
-					<td>
+					<!-- BLOK -->
+					<td class="col-block">
 						<label>Blok</label>
-						<input type="number" name="blok">
+
+						<input
+							type="number"
+							name="blok"
+						>
 					</td>
 
 				</tr>
 
 				</tbody>
-
 			</table>
 
 		</div>
@@ -362,40 +410,53 @@
 		const tableBody = document.getElementById('tableBody');
 
 		const rowCount =
-			document.querySelectorAll('#tableBody .section1-material').length + 1;
+			document.querySelectorAll('#tableBody .cut-row-top').length + 1;
 
 		const row = `
 
-        <!-- 1. RIADOK -->
-        <tr class="section1-material">
+        <!-- =========================
+             RIADOK 1
+             ========================= -->
+        <tr class="cut-row cut-row-top">
 
-            <td rowspan="3" class="row-number">
+            <!-- ČÍSLO -->
+            <td rowspan="2" class="row-number">
                 ${rowCount}
             </td>
 
-            <td>
+            <!-- MATERIÁL -->
+            <td class="col-material">
                 <label>Materiál *</label>
+
                 <select name="material">
                     <option value="DTD Laminovana">DTD Laminovaná</option>
                     <option value="DTD Dyhovana">DTD Dýhovaná</option>
                     <option value="DTD Surova">DTD Surová</option>
                     <option value="HDF (Sololit)">HDF (Sololit)</option>
                     <option value="MDF Dýhovaná">MDF Dýhovaná</option>
-                    <option value="MDF obojst. biela">MDF obojst. biela</option>
+                    <option value="MDF obojst. biela">
+                        MDF obojst. biela
+                    </option>
                     <option value="MDF Surova">MDF Surová</option>
-                    <option value="Pracovna doska 600">Pracovná doska 600</option>
+                    <option value="Pracovna doska 600">
+                        Pracovná doska 600
+                    </option>
                     <option value="Pracovna doska 600 - 16mm">
                         Pracovná doska 600 - 16mm
                     </option>
-                    <option value="Pracovna doska 920">Pracovná doska 920</option>
+                    <option value="Pracovna doska 920">
+                        Pracovná doska 920
+                    </option>
                     <option value="Rozne">Rozne</option>
                     <option value="Senosan">Senosan</option>
                     <option value="Zastena">Zástena</option>
                 </select>
             </td>
 
-            <td>
+            <!-- HRÚBKA -->
+            <td class="col-material-thickness">
                 <label>Hrúbka *</label>
+
                 <select name="thickness">
                     <option value="10">10 mm</option>
                     <option value="16">16 mm</option>
@@ -406,51 +467,60 @@
                 </select>
             </td>
 
-            <td>
+            <!-- DEKOR -->
+            <td class="col-decor">
                 <label>Dekor *</label>
-                <input type="text" name="decor">
+
+                <input
+                    type="text"
+                    name="decor"
+                >
             </td>
 
-            <td colspan="5"></td>
-
-            <td rowspan="3">
-                <button
-                    type="button"
-                    class="btn btn-remove"
-                    onclick="removeRow(this)">
-                    X
-                </button>
-            </td>
-
-        </tr>
-
-        <!-- 2. RIADOK -->
-        <tr class="section1-data">
-
-            <td>
+            <!-- NÁZOV -->
+            <td class="col-title">
                 <label>Názov</label>
-                <input class="name-column" type="text" name="title">
+
+                <input
+                    type="text"
+                    name="title"
+                >
             </td>
 
-            <td>
+            <!-- DĹŽKA -->
+            <td class="col-length">
                 <label>Dĺžka *</label>
-                <input type="text" name="length">
+
+                <input
+                    type="text"
+                    name="length"
+                >
             </td>
 
-            <td></td>
-
-            <td>
+            <!-- ŠÍRKA -->
+            <td class="col-width">
                 <label>Šírka *</label>
-                <input type="text" name="width">
+
+                <input
+                    type="text"
+                    name="width"
+                >
             </td>
 
-            <td>
+            <!-- KS -->
+            <td class="col-pieces">
                 <label>Ks *</label>
-                <input type="text" name="numberOfPieces">
+
+                <input
+                    type="text"
+                    name="numberOfPieces"
+                >
             </td>
 
-            <td>
+            <!-- HRÚBKA DIELCA -->
+            <td class="col-part-thickness">
                 <label>Hrúbka</label>
+
                 <select name="hrubka">
                     <option value=""></option>
                     <option value="dvojita (duplak)">
@@ -459,75 +529,149 @@
                 </select>
             </td>
 
-            <td>
+            <!-- ORIENTÁCIA -->
+            <td class="col-orientation">
                 <label>Orientácia</label>
+
                 <select name="orientacia">
-                    <option value="neotacat">neotáčať</option>
-                    <option value="otacat">otáčať</option>
+                    <option value="neotacat">
+                        neotáčať
+                    </option>
+
+                    <option value="otacat">
+                        otáčať
+                    </option>
                 </select>
+            </td>
+
+            <!-- ODSTRÁNIŤ -->
+            <td rowspan="2" class="col-remove">
+
+                <button
+                    type="button"
+                    class="btn btn-remove"
+                    onclick="removeRow(this)"
+                >
+                    X
+                </button>
+
             </td>
 
         </tr>
 
-        <!-- 3. RIADOK -->
-        <tr class="section2-data">
 
-            <td>
+        <!-- =========================
+             RIADOK 2
+             ========================= -->
+        <tr class="cut-row cut-row-bottom">
+
+            <!-- POZNÁMKA -->
+            <td
+                colspan="3"
+                class="col-note"
+            >
                 <label>Poznámka</label>
-                <input type="text" name="note">
+
+                <input
+                    type="text"
+                    name="note"
+                >
             </td>
 
-            <td>
+            <!-- PREDNÁ -->
+            <td class="col-edge">
+
                 <label>Predná</label>
-                <select name="predna" class="edge-front">
+
+                <select
+                    name="predna"
+                    class="edge-front"
+                >
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
+
             </td>
 
-            <td>
-                <button type="button" class="copy-edge-btn">➜</button>
+            <!-- ŠÍPKA -->
+            <td class="col-arrow">
+
+                <button
+                    type="button"
+                    class="copy-edge-btn"
+                >
+                    ➜
+                </button>
+
             </td>
 
-            <td>
+            <!-- ZADNÁ -->
+            <td class="col-edge">
+
                 <label>Zadná</label>
-                <select name="zadna" class="edge-back">
+
+                <select
+                    name="zadna"
+                    class="edge-back"
+                >
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
+
             </td>
 
-            <td>
+            <!-- ĽAVÁ -->
+            <td class="col-edge">
+
                 <label>Ľavá</label>
-                <select name="lava" class="edge-left">
+
+                <select
+                    name="lava"
+                    class="edge-left"
+                >
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
+
             </td>
 
-            <td>
+            <!-- PRAVÁ -->
+            <td class="col-edge">
+
                 <label>Pravá</label>
-                <select name="prava" class="edge-right">
+
+                <select
+                    name="prava"
+                    class="edge-right"
+                >
                     <option value=""></option>
                     <option>0.5</option>
                     <option>0.8</option>
                     <option>1</option>
                     <option>2</option>
                 </select>
+
             </td>
 
-            <td>
+            <!-- BLOK -->
+            <td class="col-block">
+
                 <label>Blok</label>
-                <input type="number" name="blok">
+
+                <input
+                    type="number"
+                    name="blok"
+                >
+
             </td>
 
         </tr>
@@ -538,18 +682,19 @@
 
 	function removeRow(button) {
 
-		const firstRow = button.closest('.section1-material');
+		const firstRow = button.closest('.cut-row-top');
 
 		if (!firstRow) {
 			return;
 		}
 
-		const row2 = firstRow.nextElementSibling;
-		const row3 = row2.nextElementSibling;
+		const secondRow = firstRow.nextElementSibling;
+
+		if (secondRow) {
+			secondRow.remove();
+		}
 
 		firstRow.remove();
-		row2.remove();
-		row3.remove();
 
 		updateRowNumbers();
 	}
@@ -578,19 +723,15 @@
 		};
 
 
-		const materialRows = document.querySelectorAll(
-			'#tableBody .section1-material'
+		const topRows = document.querySelectorAll(
+			'#tableBody .cut-row-top'
 		);
 
 		const rows = [];
 
+		topRows.forEach(topRow => {
 
-		materialRows.forEach(materialRow => {
-
-			const dimensionRow = materialRow.nextElementSibling;
-			const edgeRow = dimensionRow
-				? dimensionRow.nextElementSibling
-				: null;
+			const bottomRow = topRow.nextElementSibling;
 
 			const val = (row, name) => {
 
@@ -608,26 +749,39 @@
 
 			rows.push({
 
+				// =========================
 				// MATERIÁL
-				material: val(materialRow, 'material'),
-				thickness: val(materialRow, 'thickness'),
-				decor: val(materialRow, 'decor'),
+				// =========================
 
+				material: val(topRow, 'material'),
+				thickness: val(topRow, 'thickness'),
+				decor: val(topRow, 'decor'),
+
+
+				// =========================
 				// ROZMER
-				title: val(dimensionRow, 'title'),
-				length: val(dimensionRow, 'length'),
-				width: val(dimensionRow, 'width'),
-				numberOfPieces: val(dimensionRow, 'numberOfPieces'),
-				hrubka: val(dimensionRow, 'hrubka'),
-				orientacia: val(dimensionRow, 'orientacia'),
+				// =========================
 
+				title: val(topRow, 'title'),
+				length: val(topRow, 'length'),
+				width: val(topRow, 'width'),
+				numberOfPieces: val(topRow, 'numberOfPieces'),
+
+				hrubka: val(topRow, 'hrubka'),
+				orientacia: val(topRow, 'orientacia'),
+
+
+				// =========================
 				// OLEPENIE
-				note: val(edgeRow, 'note'),
-				predna: val(edgeRow, 'predna'),
-				zadna: val(edgeRow, 'zadna'),
-				lava: val(edgeRow, 'lava'),
-				prava: val(edgeRow, 'prava'),
-				blok: val(edgeRow, 'blok')
+				// =========================
+
+				note: val(bottomRow, 'note'),
+				predna: val(bottomRow, 'predna'),
+				zadna: val(bottomRow, 'zadna'),
+				lava: val(bottomRow, 'lava'),
+				prava: val(bottomRow, 'prava'),
+				blok: val(bottomRow, 'blok')
+
 			});
 
 		});
@@ -657,7 +811,7 @@
 	}
 
 	function showModal(data) {
-
+		console.log("data", data)
 		let summary = `
         <h4>Údaje zákazníka</h4>
 
