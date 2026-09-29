@@ -123,14 +123,13 @@
 						</select>
 					</td>
 
-					<!-- DEKOR -->
-					<td class="col-decor">
+					<!-- DEKOR - 2 STĹPCE -->
+					<td colspan="2" class="col-decor">
 						<label>Dekor *</label>
 
 						<input
 							type="text"
 							name="decor"
-							placeholder=""
 						>
 					</td>
 
@@ -222,7 +221,7 @@
 
 					<!-- POZNÁMKA -->
 					<td
-						colspan="3"
+						colspan="4"
 						class="col-note"
 					>
 						<label>Poznámka</label>
@@ -467,15 +466,15 @@
                 </select>
             </td>
 
-            <!-- DEKOR -->
-            <td class="col-decor">
-                <label>Dekor *</label>
+            <!-- DEKOR - 2 STĹPCE -->
+			<td colspan="2" class="col-decor">
+				<label>Dekor *</label>
 
-                <input
-                    type="text"
-                    name="decor"
-                >
-            </td>
+				<input
+					type="text"
+					name="decor"
+				>
+			</td>
 
             <!-- NÁZOV -->
             <td class="col-title">
@@ -567,7 +566,7 @@
 
             <!-- POZNÁMKA -->
             <td
-                colspan="3"
+                colspan="4"
                 class="col-note"
             >
                 <label>Poznámka</label>
