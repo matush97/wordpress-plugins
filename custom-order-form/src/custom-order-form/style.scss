@@ -159,8 +159,8 @@
    HRÚBKA MATERIÁLU
    ========================================================= */
 
-#cutTable .section1-material td:nth-child(3) {
-	width: 95px;
+#cutTable .col-material {
+	width: 150px;
 }
 
 
@@ -185,11 +185,10 @@
 /* =========================================================
    NÁZOV
    ========================================================= */
-
-#cutTable .section1-data td:first-child {
-	width: 150px;
+#cutTable .col-title {
+	width: 150px !important;
+	min-width: 150px;
 }
-
 
 /* =========================================================
    DĹŽKA
@@ -258,30 +257,11 @@
 
 
 /* =========================================================
-   ŠÍPKA
-   ========================================================= */
-
-#cutTable .section2-data td:nth-child(3) {
-	width: 40px;
-	text-align: center;
-}
-
-
-/* =========================================================
    BLOK
    ========================================================= */
 
 #cutTable .section2-data td:nth-child(7) {
 	width: 70px;
-}
-
-
-/* =========================================================
-   ODSTRÁNENIE ROZMERU
-   ========================================================= */
-
-#cutTable .section1-material td:last-child {
-	width: 45px;
 }
 
 #cutTable .btn-remove {
@@ -495,4 +475,47 @@
 	#cutTable {
 		min-width: 1250px;
 	}
+}
+
+/* =========================================================
+   ÚZKY STĹPEC PRE ODSTRÁNENIE ROZMERU - X
+   ========================================================= */
+
+#cutTable .col-remove {
+	width: 42px !important;
+	min-width: 42px !important;
+	max-width: 42px !important;
+	padding: 4px !important;
+	text-align: center;
+}
+
+#cutTable .col-remove .btn-remove {
+	width: 30px;
+	min-width: 30px;
+	max-width: 30px;
+	height: 30px;
+	padding: 0;
+	margin: 0 auto;
+	font-size: 12px;
+}
+
+/* =========================================================
+   ÚZKY STĹPEC PRE ŠÍPKU
+   ========================================================= */
+
+#cutTable .col-arrow {
+	width: 36px !important;
+	min-width: 36px !important;
+	max-width: 36px !important;
+	padding: 3px !important;
+	text-align: center;
+}
+
+#cutTable .copy-edge-btn {
+	width: 28px;
+	min-width: 28px;
+	max-width: 28px;
+	height: 28px;
+	padding: 0;
+	margin: 0 auto;
 }
