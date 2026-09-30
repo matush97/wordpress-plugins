@@ -952,12 +952,6 @@
 		// ==========================================
 
 		const fields = [
-			'company',
-			'address',
-			'city',
-			'ico',
-			'phone',
-			'email',
 			'customerOrderReference',
 			'additionalInformation'
 		];
